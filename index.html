@@ -1,0 +1,1898 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EchoForge AI | Intelligent Sound. Limitless Creativity.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Sora:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+
+:root{
+  /* EchoForge AI Deep Purple / Violet Palette */
+  --blue:#7C3AED;          /* Core violet primary */
+  --blue-light:#9D5CF5;    /* Light violet */
+  --blue-dim:#6025C2;      /* Deep violet */
+  --blue-dark:#3B1280;     /* Dark indigo */
+  --blue-deeper:#1E0850;   /* Darkest deep purple */
+
+  --accent:#A78BFA;        /* Soft lavender accent */
+  --accent-light:#F3EEFF;  /* Near-white lavender */
+  --accent-dim:#C4B5FD;    /* Pale violet */
+
+  --green:#10B981;         /* Emerald for positives */
+  --green-light:#34D399;
+
+  /* Nav / Footer BG - Deep Dark Purple */
+  --nav-bg:#1a0545;
+  --footer-bg:#0f0228;
+
+  /* Page Backgrounds */
+  --bg-white:#FAFAFE;
+  --bg-light:#F3EEFF;
+  --bg-section:#EDE9FE;
+  --bg-card:#FFFFFF;
+
+  --card-border:rgba(124,58,237,0.18);
+  --card-border-strong:rgba(124,58,237,0.38);
+
+  --text-dark:#1a0545;
+  --text-mid:#3B1280;
+  --text-muted:#6B46C1;
+  --text-light:#9D78DB;
+  --white:#FFFFFF;
+
+  --nav-h:72px;
+  --max-w:1200px;
+  --font:'Plus Jakarta Sans',sans-serif;
+  --display:'Sora',sans-serif;
+  --mono:'IBM Plex Mono',monospace;
+  --ease:cubic-bezier(0.4,0,0.2,1);
+  --ease-out:cubic-bezier(0,0,0.2,1);
+}
+
+body{font-family:var(--font);color:var(--text-dark);background:#FAFAFE;overflow-x:hidden;}
+
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-track{background:var(--bg-light);}
+::-webkit-scrollbar-thumb{background:var(--blue);border-radius:2px;}
+
+img{display:block;max-width:100%;}
+
+/* ─── NAVBAR ─────────────────────────────────────────── */
+.navbar{
+  position:fixed;top:0;left:0;width:100%;height:var(--nav-h);
+  background:var(--nav-bg);backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(255,255,255,0.15);
+  z-index:1000;display:flex;align-items:center;
+  padding:0 clamp(14px,5vw,80px);
+  justify-content:space-between;
+  transition:border-color 0.3s;
+  box-shadow:0 2px 24px rgba(124,58,237,0.4);
+  gap:12px;
+}
+.nav-logo{
+  font-family:var(--display);font-size:18px;font-weight:800;
+  color:var(--white);letter-spacing:-0.3px;
+  display:flex;align-items:center;gap:12px;
+  cursor:pointer;text-decoration:none;flex-shrink:0;
+}
+.nav-logo-icon{
+  width:40px;height:40px;
+  background:linear-gradient(135deg,rgba(124,58,237,0.6),rgba(157,92,245,0.4));
+  border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+  box-shadow:0 4px 14px rgba(124,58,237,0.35);
+  border:1px solid rgba(167,139,250,0.4);
+  font-size:18px;
+}
+.nav-logo-text{display:flex;flex-direction:column;line-height:1;}
+.nav-logo-text span{font-size:10px;font-family:var(--mono);font-weight:500;color:rgba(255,255,255,0.6);letter-spacing:2px;text-transform:uppercase;margin-top:3px;}
+
+.nav-links{display:flex;align-items:center;gap:4px;list-style:none;}
+.nav-links li button{
+  background:none;border:none;
+  color:rgba(255,255,255,0.82);
+  font-size:11px;font-weight:600;
+  padding:8px 14px;border-radius:7px;
+  transition:all 0.22s var(--ease);
+  cursor:pointer;font-family:var(--mono);
+  letter-spacing:0.8px;text-transform:uppercase;
+  position:relative;white-space:nowrap;
+}
+.nav-links li button:hover{color:#fff;background:rgba(167,139,250,0.18);}
+.nav-links li button.active{color:#fff;background:rgba(167,139,250,0.22);}
+.nav-links li button.active::after{
+  content:'';position:absolute;bottom:5px;left:50%;
+  transform:translateX(-50%);width:14px;height:2px;
+  background:var(--accent);border-radius:2px;
+}
+
+.nav-right{display:flex;align-items:center;gap:10px;}
+.btn-demo-nav{
+  background:linear-gradient(135deg,var(--blue),var(--blue-dim));
+  color:#fff;border:none;padding:9px 20px;border-radius:8px;
+  font-size:11px;font-weight:700;cursor:pointer;
+  transition:all 0.22s;font-family:var(--mono);
+  letter-spacing:0.8px;text-transform:uppercase;white-space:nowrap;
+  box-shadow:0 2px 12px rgba(124,58,237,0.45);
+}
+.btn-demo-nav:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(124,58,237,0.6);}
+
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;background:none;border:none;flex-shrink:0;}
+.hamburger span{width:22px;height:2px;background:#fff;border-radius:2px;transition:0.3s;display:block;}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.hamburger.open span:nth-child(2){opacity:0;}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+.mobile-nav{
+  display:none;position:fixed;top:var(--nav-h);left:0;width:100%;
+  background:#1a0545;backdrop-filter:blur(20px);
+  padding:12px 20px 20px;flex-direction:column;gap:2px;
+  z-index:999;border-bottom:1px solid rgba(255,255,255,0.1);
+  animation:slideDown 0.25s var(--ease-out);
+}
+@keyframes slideDown{from{opacity:0;transform:translateY(-10px);}to{opacity:1;transform:translateY(0);}}
+.mobile-nav.open{display:flex;}
+.mobile-nav button{
+  background:none;border:none;color:rgba(255,255,255,0.8);
+  font-size:13px;font-weight:600;padding:13px 12px;
+  border-bottom:1px solid rgba(255,255,255,0.08);
+  cursor:pointer;font-family:var(--mono);text-align:left;
+  text-transform:uppercase;letter-spacing:1px;
+  transition:color 0.2s,background 0.2s;border-radius:6px;
+}
+.mobile-nav button:hover{color:#fff;background:rgba(167,139,250,0.15);}
+.mobile-nav .mob-cta{
+  margin-top:8px;background:linear-gradient(135deg,var(--blue),var(--blue-dim));
+  color:#fff;border:none;padding:13px;
+  border-radius:8px;font-weight:700;font-size:12px;
+  letter-spacing:1px;text-transform:uppercase;cursor:pointer;
+  font-family:var(--mono);
+}
+
+/* ─── PAGE SYSTEM ─────────────────────────────────────── */
+.page{display:none;min-height:100vh;padding-top:var(--nav-h);}
+.page.active{display:block;animation:pgIn 0.35s var(--ease);}
+@keyframes pgIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+
+/* ─── SECTION COMMONS ─────────────────────────────────── */
+.label-tag{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--mono);font-size:10px;font-weight:600;
+  letter-spacing:3px;text-transform:uppercase;
+  color:var(--blue-dim);margin-bottom:14px;
+}
+.label-tag::before{content:'';width:20px;height:1px;background:var(--blue);}
+.label-tag-white{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--mono);font-size:10px;font-weight:600;
+  letter-spacing:3px;text-transform:uppercase;
+  color:rgba(255,255,255,0.8);margin-bottom:14px;
+}
+.label-tag-white::before{content:'';width:20px;height:1px;background:rgba(255,255,255,0.6);}
+
+.section-h2{
+  font-family:var(--display);font-size:clamp(28px,3vw,54px);
+  font-weight:800;line-height:1.1;letter-spacing:-0.8px;
+  margin-bottom:10px;
+}
+.section-h2.blue-txt{color:var(--blue-dark);}
+.section-h2.dark{color:var(--text-dark);}
+.section-h2.white{color:var(--white);}
+
+.section-divider{width:56px;height:3px;margin:16px 0 28px;border-radius:2px;}
+.divider-blue{background:linear-gradient(90deg,var(--blue),transparent);}
+.divider-white{background:linear-gradient(90deg,rgba(255,255,255,0.8),transparent);}
+.divider-center{margin:16px auto 28px;}
+
+.para-dark{color:var(--text-mid);line-height:1.85;font-size:clamp(15px,1.2vw,18px);}
+.para-light{color:rgba(255,255,255,0.85);line-height:1.85;font-size:clamp(15px,1.2vw,18px);}
+
+.container{max-width:1200px;margin:0 auto;padding:0 clamp(20px,5vw,80px);width:100%;}
+
+/* ─── BUTTONS ─────────────────────────────────────────── */
+.btn-primary{
+  display:inline-flex;align-items:center;gap:8px;
+  background:linear-gradient(135deg,var(--blue),var(--blue-dark));
+  color:var(--white);padding:13px 28px;border-radius:8px;
+  text-decoration:none;font-weight:700;font-size:12px;
+  letter-spacing:0.8px;text-transform:uppercase;
+  transition:all 0.25s;font-family:var(--mono);border:none;cursor:pointer;
+  box-shadow:0 4px 16px rgba(124,58,237,0.4);
+}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(124,58,237,0.55);}
+
+.btn-secondary{
+  display:inline-flex;align-items:center;gap:8px;
+  border:1.5px solid var(--blue);color:var(--blue-dark);
+  padding:12px 28px;border-radius:8px;text-decoration:none;
+  font-weight:700;font-size:12px;letter-spacing:0.8px;
+  text-transform:uppercase;transition:all 0.25s;
+  font-family:var(--mono);background:none;cursor:pointer;
+}
+.btn-secondary:hover{background:rgba(124,58,237,0.08);border-color:var(--blue-dim);}
+
+.btn-white{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--white);color:var(--blue-dark);
+  padding:12px 28px;border-radius:8px;
+  font-weight:700;font-size:12px;letter-spacing:0.8px;
+  text-transform:uppercase;transition:all 0.25s;
+  font-family:var(--mono);border:none;cursor:pointer;
+  box-shadow:0 4px 16px rgba(0,0,0,0.12);
+}
+.btn-white:hover{transform:translateY(-2px);background:var(--accent-light);box-shadow:0 8px 28px rgba(0,0,0,0.2);}
+
+/* ─── STATUS BADGES ─────────────────────────────── */
+.risk-badge{
+  display:inline-flex;align-items:center;gap:5px;
+  padding:3px 10px;border-radius:20px;
+  font-size:10px;font-weight:700;font-family:var(--mono);letter-spacing:0.5px;
+}
+.risk-blue{background:rgba(124,58,237,0.1);color:var(--blue-dim);border:1px solid rgba(124,58,237,0.28);}
+.risk-light{background:rgba(167,139,250,0.2);color:var(--blue-dark);border:1px solid rgba(124,58,237,0.25);}
+.risk-green{background:rgba(16,185,129,0.1);color:#059669;border:1px solid rgba(16,185,129,0.25);}
+.risk-dot{width:5px;height:5px;border-radius:50%;background:currentColor;flex-shrink:0;}
+
+/* ─── HERO ─────────────────────────────────────────────── */
+.hero{
+  background:linear-gradient(140deg,#F3EEFF 0%,#E9DFFE 40%,#DDD6FE 100%);
+  padding:clamp(60px,9vw,120px) 0 clamp(50px,7vw,96px);
+  position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;top:-80px;right:-80px;
+  width:clamp(300px,40vw,700px);height:clamp(300px,40vw,700px);border-radius:50%;
+  background:radial-gradient(circle,rgba(124,58,237,0.14) 0%,transparent 70%);
+}
+.hero::after{
+  content:'';position:absolute;bottom:-60px;left:-60px;
+  width:clamp(200px,30vw,500px);height:clamp(200px,30vw,500px);border-radius:50%;
+  background:radial-gradient(circle,rgba(139,92,246,0.08) 0%,transparent 70%);
+}
+.hero-inner{
+  max-width:1200px;margin:0 auto;
+  padding:0 clamp(20px,5vw,80px);
+  display:grid;grid-template-columns:1.05fr 0.95fr;gap:clamp(48px,6vw,96px);
+  align-items:center;position:relative;z-index:1;
+}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(124,58,237,0.12);border:1px solid rgba(124,58,237,0.3);
+  border-radius:30px;padding:6px 16px;
+  font-family:var(--mono);font-size:10px;font-weight:700;
+  color:var(--blue-dim);letter-spacing:1.5px;text-transform:uppercase;
+  margin-bottom:22px;
+}
+.hero-badge-dot{width:6px;height:6px;border-radius:50%;background:var(--blue);animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.4;}}
+h1{
+  font-family:var(--display);font-size:clamp(34px,4.5vw,68px);
+  font-weight:800;line-height:1.06;letter-spacing:-1.5px;color:var(--text-dark);
+  margin-bottom:6px;
+}
+h1 .blue{color:var(--blue);}
+h1 .dark-blue{color:var(--blue-dark);}
+.hero-rule{width:48px;height:3px;background:linear-gradient(90deg,var(--blue),var(--blue-light));border-radius:2px;margin:20px 0;}
+.hero-body{font-size:clamp(15px,1.3vw,19px);color:var(--text-mid);line-height:1.8;margin-bottom:28px;max-width:560px;}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;}
+
+.hero-mini-stats{display:flex;gap:14px;margin-top:34px;flex-wrap:wrap;}
+.hero-mini-card{
+  background:rgba(255,255,255,0.88);
+  border:1px solid rgba(124,58,237,0.2);
+  border-radius:12px;padding:clamp(12px,1.5vw,18px) clamp(14px,2vw,22px);min-width:130px;
+  backdrop-filter:blur(8px);
+}
+.hero-mini-card strong{
+  display:block;font-family:var(--display);
+  font-size:clamp(20px,2vw,28px);font-weight:800;color:var(--blue-dark);
+}
+.hero-mini-card span{font-size:clamp(10px,0.85vw,12px);color:var(--text-muted);font-family:var(--mono);}
+
+/* DASHBOARD CARD */
+.score-card{
+  background:#fff;border-radius:18px;
+  border:1px solid rgba(124,58,237,0.18);
+  padding:24px;box-shadow:0 8px 40px rgba(124,58,237,0.13);
+}
+.score-card-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px;}
+.score-card-label{font-family:var(--mono);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);margin-bottom:4px;}
+.dashboard-title{font-family:var(--display);font-size:17px;font-weight:700;color:var(--text-dark);}
+.live-dot-wrap{display:flex;align-items:center;gap:5px;font-family:var(--mono);font-size:9px;font-weight:700;color:var(--blue);letter-spacing:1.5px;}
+.live-dot{width:8px;height:8px;border-radius:50%;background:var(--blue);animation:pulse 1.5s infinite;}
+.score-row{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid rgba(124,58,237,0.08);}
+.score-icon{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:9px;font-weight:700;flex-shrink:0;}
+.score-icon.blue-bg{background:rgba(124,58,237,0.12);color:var(--blue-dim);}
+.score-icon.light-bg{background:rgba(167,139,250,0.22);color:var(--blue-dark);}
+.score-icon.green-bg{background:rgba(16,185,129,0.12);color:#059669;}
+.score-lbl{flex:1;font-size:12px;color:var(--text-muted);}
+.score-val{font-family:var(--mono);font-size:13px;font-weight:700;color:var(--text-dark);}
+.score-big{display:flex;align-items:center;gap:16px;margin-top:18px;padding:16px;background:linear-gradient(135deg,rgba(124,58,237,0.08),rgba(167,139,250,0.18));border-radius:12px;border:1px solid rgba(124,58,237,0.15);}
+.score-big-num{font-family:var(--display);font-size:clamp(44px,4vw,56px);font-weight:800;color:var(--blue);line-height:1;}
+.score-big-info .label{font-size:13px;font-weight:700;color:var(--text-dark);}
+.score-big-info .sub{font-size:11px;color:var(--text-muted);margin-top:3px;font-family:var(--mono);}
+
+/* ─── STATS STRIP ─────────────────────────────────────── */
+.section-blue{
+  background:linear-gradient(135deg,#1a0545 0%,#0f0228 100%);
+  padding:clamp(60px,7vw,112px) 0;
+}
+.stats-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:clamp(32px,4vw,56px);
+}
+.stat-card{
+  background:rgba(255,255,255,0.08);border:1px solid rgba(167,139,250,0.2);
+  border-radius:16px;padding:clamp(20px,3vw,30px);
+  text-align:center;transition:transform 0.25s,border-color 0.25s;
+}
+.stat-card:hover{transform:translateY(-4px);border-color:rgba(167,139,250,0.45);}
+.stat-num{font-family:var(--display);font-size:clamp(30px,3.5vw,56px);font-weight:800;color:#fff;margin-bottom:10px;}
+.stat-lbl{font-size:13px;color:rgba(255,255,255,0.72);line-height:1.6;}
+
+/* ─── PLATFORM SECTION ─────────────────────────────────── */
+.platform-section{background:var(--bg-white);padding:clamp(60px,7vw,112px) 0;}
+.platform-sub{max-width:min(760px,80%);margin-bottom:44px;color:var(--text-mid);}
+.platform-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
+.platform-card{
+  background:#fff;border:1px solid var(--card-border);
+  border-radius:18px;overflow:hidden;
+  transition:transform 0.28s var(--ease),box-shadow 0.28s var(--ease),border-color 0.28s;
+  display:flex;flex-direction:column;
+}
+.platform-card:hover{transform:translateY(-6px);box-shadow:0 20px 50px rgba(124,58,237,0.13);border-color:var(--card-border-strong);}
+.platform-img-wrap{height:180px;overflow:hidden;background:#ede9fe;}
+.platform-img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform 0.4s var(--ease);}
+.platform-card:hover .platform-img-wrap img{transform:scale(1.05);}
+.inner{padding:22px;flex:1;display:flex;flex-direction:column;}
+.element-badge{
+  display:inline-block;font-family:var(--mono);font-size:9px;font-weight:700;
+  letter-spacing:2px;text-transform:uppercase;color:var(--blue-dim);
+  background:rgba(124,58,237,0.1);padding:3px 10px;border-radius:20px;
+  margin-bottom:12px;
+}
+.inner h3{font-family:var(--display);font-size:clamp(15px,1.3vw,18px);font-weight:700;color:var(--text-dark);margin-bottom:10px;line-height:1.3;}
+.inner p{font-size:clamp(13px,1vw,14px);color:var(--text-muted);line-height:1.7;flex:1;}
+.more-text{font-size:13px;color:var(--text-muted);line-height:1.7;display:none;margin-top:12px;padding-top:12px;border-top:1px solid rgba(124,58,237,0.08);}
+.platform-card.open .more-text{display:block;}
+.expand-btn{
+  margin-top:16px;background:none;border:1px solid rgba(124,58,237,0.2);
+  color:var(--blue-dim);padding:7px 14px;border-radius:7px;
+  font-size:11px;font-weight:600;cursor:pointer;font-family:var(--mono);
+  letter-spacing:0.5px;transition:all 0.2s;align-self:flex-start;
+}
+.expand-btn:hover{background:rgba(124,58,237,0.07);border-color:var(--blue);}
+
+/* ─── SECTION LIGHT / PROCESS ─────────────────────────── */
+.section-light{background:var(--bg-light);padding:clamp(60px,7vw,112px) 0;}
+.process-section{background:var(--bg-white);padding:clamp(60px,7vw,112px) 0;}
+.platform-grid-2col{display:grid;grid-template-columns:repeat(2,1fr);gap:28px;}
+.process-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:clamp(32px,4vw,52px);}
+.process-card{
+  background:#fff;border:1px solid var(--card-border);
+  border-radius:16px;padding:clamp(22px,3vw,32px);
+  transition:transform 0.25s,box-shadow 0.25s;
+}
+.process-card:hover{transform:translateY(-4px);box-shadow:0 16px 44px rgba(124,58,237,0.1);}
+.process-card:hover img{transform:scale(1.06);}
+.process-num{
+  font-family:var(--display);font-size:clamp(36px,4vw,52px);font-weight:800;
+  color:rgba(124,58,237,0.12);margin-bottom:16px;line-height:1;
+}
+.process-icon{
+  width:48px;height:48px;background:linear-gradient(135deg,rgba(124,58,237,0.12),rgba(167,139,250,0.2));
+  border-radius:12px;display:flex;align-items:center;justify-content:center;
+  font-size:20px;color:var(--blue);margin-bottom:16px;
+}
+.process-card h3{font-family:var(--display);font-size:clamp(15px,1.3vw,18px);font-weight:700;color:var(--text-dark);margin-bottom:10px;}
+.process-card p{font-size:clamp(13px,1vw,14px);color:var(--text-muted);line-height:1.75;}
+
+/* ─── PRICING ─────────────────────────────────────────── */
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:clamp(32px,4vw,52px);}
+.price-card{
+  background:#fff;border:1px solid var(--card-border);
+  border-radius:18px;padding:clamp(28px,3vw,36px);
+  transition:transform 0.25s,box-shadow 0.25s;position:relative;
+  display:flex;flex-direction:column;
+}
+.price-card:hover{transform:translateY(-4px);box-shadow:0 16px 44px rgba(124,58,237,0.1);}
+.price-card.featured{
+  border:2px solid var(--blue);
+  box-shadow:0 8px 40px rgba(124,58,237,0.18);
+}
+.featured-badge{
+  position:absolute;top:-14px;left:50%;transform:translateX(-50%);
+  background:linear-gradient(135deg,var(--blue),var(--blue-dim));
+  color:#fff;font-family:var(--mono);font-size:9px;font-weight:700;
+  letter-spacing:2px;text-transform:uppercase;
+  padding:4px 16px;border-radius:20px;white-space:nowrap;
+}
+.price-tier{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--blue-dim);margin-bottom:8px;}
+.price-amount{font-family:var(--display);font-size:clamp(38px,4vw,52px);font-weight:800;color:var(--text-dark);line-height:1;}
+.price-amount sup{font-size:22px;font-weight:700;vertical-align:super;color:var(--blue);}
+.price-amount small{font-size:14px;color:var(--text-muted);font-weight:500;}
+.price-desc{font-size:13px;color:var(--text-muted);margin:10px 0 20px;line-height:1.6;}
+.price-features{list-style:none;margin-bottom:28px;flex:1;}
+.price-features li{
+  font-size:13px;color:var(--text-mid);padding:7px 0;
+  border-bottom:1px solid rgba(124,58,237,0.06);
+  display:flex;align-items:center;gap:8px;
+}
+.price-features li::before{
+  content:'✓';color:var(--blue);font-weight:700;font-size:12px;flex-shrink:0;
+}
+.price-btn{
+  width:100%;padding:13px;background:linear-gradient(135deg,var(--blue),var(--blue-dark));
+  color:#fff;border:none;border-radius:9px;font-size:12px;font-weight:700;
+  letter-spacing:0.8px;text-transform:uppercase;cursor:pointer;font-family:var(--mono);
+  transition:all 0.22s;
+}
+.price-btn:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(124,58,237,0.4);}
+.price-btn.outline{background:none;border:1.5px solid var(--blue);color:var(--blue-dark);}
+.price-btn.outline:hover{background:rgba(124,58,237,0.06);}
+
+/* ─── MARKET CHARTS ─────────────────────────────────────── */
+.chart-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:32px;margin-top:clamp(32px,4vw,52px);}
+.chart-box{
+  background:#fff;border:1px solid var(--card-border);
+  border-radius:16px;padding:24px;
+  box-shadow:0 4px 20px rgba(124,58,237,0.06);
+}
+.chart-box h4{font-family:var(--display);font-size:15px;font-weight:700;color:var(--text-dark);margin-bottom:16px;}
+.chart-box canvas{height:220px!important;}
+
+/* ─── VALUES GRID ─────────────────────────────────────── */
+.values-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:clamp(32px,4vw,52px);}
+.value-card{
+  background:rgba(255,255,255,0.08);border:1px solid rgba(167,139,250,0.2);
+  border-radius:14px;padding:clamp(18px,2.5vw,26px);
+  transition:transform 0.25s,border-color 0.25s;
+}
+.value-card:hover{transform:translateY(-4px);border-color:rgba(167,139,250,0.45);}
+.value-icon{width:44px;height:44px;background:rgba(167,139,250,0.18);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:14px;}
+.value-card h4{font-family:var(--display);font-size:15px;font-weight:700;color:#fff;margin-bottom:8px;}
+.value-card p{font-size:13px;color:rgba(255,255,255,0.68);line-height:1.65;}
+
+/* ─── FOUNDERS ─────────────────────────────────────────── */
+.founder-profile-grid{
+  display:grid;
+  grid-template-columns:1fr 1.4fr;
+  gap:clamp(32px,5vw,72px);
+  align-items:stretch;
+  margin-top:8px;
+}
+@media(max-width:900px){
+  .founder-profile-grid{grid-template-columns:1fr;gap:24px;}
+  .founder-photo-wrap{height:260px!important;}
+  .founder-studio-img{height:160px!important;}
+}
+@media(max-width:600px){
+  .founder-photo-wrap{height:200px!important;}
+  .founder-stats-strip>div{padding:12px 8px!important;}
+  .founder-stats-strip>div>div:first-child{font-size:18px!important;}
+}
+.founders-grid{display:grid;grid-template-columns:1fr;gap:32px;max-width:720px;}
+.founder-card{
+  background:#fff;border:1px solid var(--card-border);
+  border-radius:18px;padding:clamp(24px,3vw,36px);
+  display:flex;gap:clamp(20px,3vw,32px);align-items:flex-start;
+  box-shadow:0 4px 20px rgba(124,58,237,0.06);
+  transition:transform 0.25s;
+}
+.founder-card:hover{transform:translateY(-3px);}
+.founder-avatar{
+  width:72px;height:72px;border-radius:16px;flex-shrink:0;
+  background:linear-gradient(135deg,var(--blue),var(--blue-dim));
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--display);font-size:28px;font-weight:800;color:#fff;
+}
+.founder-name{font-family:var(--display);font-size:clamp(18px,2vw,22px);font-weight:800;color:var(--text-dark);margin-bottom:4px;}
+.founder-role{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--blue-dim);margin-bottom:14px;}
+.founder-bio{font-size:13px;color:var(--text-muted);line-height:1.75;}
+.founder-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;}
+.founder-tag{
+  font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  background:rgba(124,58,237,0.1);color:var(--blue-dim);
+  padding:4px 10px;border-radius:20px;
+}
+
+/* ─── FAQ ─────────────────────────────────────────────── */
+.faq-list{max-width:760px;margin-top:clamp(28px,4vw,44px);}
+.faq-item{border-bottom:1px solid rgba(124,58,237,0.1);overflow:hidden;}
+.faq-q{
+  width:100%;background:none;border:none;cursor:pointer;
+  font-size:clamp(14px,1.2vw,16px);font-weight:700;color:var(--text-dark);
+  padding:clamp(16px,2vw,20px) clamp(16px,2.5vw,24px);
+  text-align:left;display:flex;justify-content:space-between;align-items:center;gap:16px;
+  transition:color 0.2s;font-family:var(--font);line-height:1.4;
+}
+.faq-q:hover{color:var(--blue);}
+.faq-icon{color:var(--blue);flex-shrink:0;width:24px;height:24px;border-radius:50%;background:rgba(124,58,237,0.1);display:flex;align-items:center;justify-content:center;font-size:12px;}
+.faq-a{max-height:0;overflow:hidden;transition:max-height 0.35s var(--ease-out),padding 0.3s;font-size:14px;color:var(--text-muted);line-height:1.8;padding:0 clamp(16px,2.5vw,24px);}
+.faq-item.open .faq-a{max-height:600px;padding:0 clamp(16px,2.5vw,24px) clamp(16px,2vw,24px);}
+
+/* ─── CONTACT ─────────────────────────────────────────── */
+.contact-grid{display:grid;grid-template-columns:1fr 1.3fr;gap:clamp(32px,5vw,72px);}
+.contact-info{display:flex;flex-direction:column;gap:16px;}
+.contact-info-card{
+  background:#fff;border:1px solid var(--card-border);
+  border-radius:12px;padding:16px 18px;
+  display:flex;align-items:center;gap:14px;
+  box-shadow:0 2px 8px rgba(124,58,237,0.05);
+  transition:border-color 0.2s;
+}
+.contact-info-card:hover{border-color:var(--card-border-strong);}
+.contact-info-icon{
+  width:40px;height:40px;border-radius:10px;flex-shrink:0;
+  background:linear-gradient(135deg,rgba(124,58,237,0.1),rgba(167,139,250,0.18));
+  display:flex;align-items:center;justify-content:center;
+  color:var(--blue);font-size:16px;
+}
+.contact-info-text strong{display:block;font-size:13px;font-weight:700;color:var(--text-dark);margin-bottom:3px;}
+.contact-info-text span{font-size:12px;color:var(--text-muted);font-family:var(--mono);}
+.contact-form-wrap{
+  background:#fff;border:1px solid var(--card-border);
+  border-radius:18px;padding:clamp(24px,3vw,36px);
+  box-shadow:0 8px 32px rgba(124,58,237,0.08);
+}
+.form-row{margin-bottom:18px;}
+.form-row label{display:block;font-size:12px;font-weight:700;color:var(--text-dark);margin-bottom:7px;font-family:var(--mono);letter-spacing:0.5px;text-transform:uppercase;}
+.form-row input,.form-row select,.form-row textarea{
+  width:100%;padding:12px 14px;border:1.5px solid rgba(124,58,237,0.2);
+  border-radius:8px;font-size:14px;color:var(--text-dark);
+  background:#fff;font-family:var(--font);
+  transition:border-color 0.2s,box-shadow 0.2s;outline:none;
+}
+.form-row input:focus,.form-row select:focus,.form-row textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(124,58,237,0.1);}
+.form-row textarea{min-height:110px;resize:vertical;}
+.form-submit-btn{
+  width:100%;padding:14px;
+  background:linear-gradient(135deg,var(--blue),var(--blue-dark));
+  color:#fff;border:none;border-radius:9px;font-size:12px;font-weight:700;
+  letter-spacing:0.8px;text-transform:uppercase;cursor:pointer;font-family:var(--mono);
+  transition:all 0.22s;box-shadow:0 4px 16px rgba(124,58,237,0.35);
+}
+.form-submit-btn:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(124,58,237,0.5);}
+
+/* ─── FOOTER ─────────────────────────────────────────── */
+footer{
+  background:var(--footer-bg);
+  padding:clamp(56px,8vw,96px) 0 0;
+}
+.footer-inner{
+  max-width:1200px;margin:0 auto;
+  padding:0 clamp(20px,5vw,80px);
+  display:grid;grid-template-columns:2fr 1fr 1fr 1fr;
+  gap:clamp(28px,4vw,56px);
+}
+.footer-logo{
+  font-family:var(--display);font-size:20px;font-weight:800;
+  color:#fff;margin-bottom:16px;cursor:pointer;
+  display:flex;align-items:center;gap:10px;
+}
+.footer-logo-icon{
+  width:34px;height:34px;background:linear-gradient(135deg,var(--blue),var(--blue-dim));
+  border-radius:8px;display:flex;align-items:center;justify-content:center;
+  font-size:16px;
+}
+.footer-desc{font-size:13px;color:rgba(255,255,255,0.55);line-height:1.75;margin-bottom:20px;}
+.footer-badges{display:flex;flex-wrap:wrap;gap:8px;}
+.footer-badge{
+  font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;
+  background:rgba(167,139,250,0.12);color:rgba(255,255,255,0.7);
+  padding:4px 10px;border-radius:20px;border:1px solid rgba(167,139,250,0.2);
+}
+.footer-col-title{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,0.45);margin-bottom:18px;}
+.footer-col{display:flex;flex-direction:column;gap:12px;}
+.footer-col a{font-size:13px;color:rgba(255,255,255,0.55);cursor:pointer;transition:color 0.2s;text-decoration:none;}
+.footer-col a:hover{color:#fff;}
+.footer-bottom-bar{
+  max-width:1200px;margin:40px auto 0;padding:20px clamp(20px,5vw,80px);
+  border-top:1px solid rgba(255,255,255,0.08);
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;
+}
+.footer-bottom-bar p{font-size:12px;color:rgba(255,255,255,0.45);font-family:var(--mono);}
+.footer-bottom-bar p span{color:rgba(255,255,255,0.72);}
+.footer-bottom-links{display:flex;gap:20px;}
+.footer-bottom-links a{font-size:12px;color:rgba(255,255,255,0.45);cursor:pointer;transition:color 0.2s;text-decoration:none;}
+.footer-bottom-links a:hover{color:rgba(255,255,255,0.8);}
+
+/* ─── COMPARISON TABLE ─────────────────────────────────── */
+.comp-table{width:100%;min-width:600px;border-collapse:collapse;margin-top:32px;font-size:13px;}
+.comp-table th{
+  background:rgba(124,58,237,0.08);
+  font-family:var(--mono);font-size:10px;letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--blue-dim);padding:12px 16px;text-align:left;
+  border-bottom:2px solid rgba(124,58,237,0.15);
+}
+.comp-table td{padding:13px 16px;border-bottom:1px solid rgba(124,58,237,0.08);color:var(--text-mid);}
+.comp-table tr:hover td{background:rgba(124,58,237,0.03);}
+.comp-table .check{color:var(--blue);font-weight:700;}
+.comp-table .cross{color:#d1d5db;}
+.comp-table .highlight-col{background:rgba(124,58,237,0.04);font-weight:600;color:var(--blue-dark);}
+
+/* ─── WAVEFORM ANIMATION ─────────────────────────────── */
+.waveform{display:flex;align-items:center;gap:3px;height:40px;}
+.waveform-bar{
+  width:3px;border-radius:2px;
+  background:linear-gradient(180deg,var(--blue),var(--accent));
+  animation:wave 1.4s ease-in-out infinite;
+}
+.waveform-bar:nth-child(1){height:20px;animation-delay:0s;}
+.waveform-bar:nth-child(2){height:32px;animation-delay:0.1s;}
+.waveform-bar:nth-child(3){height:14px;animation-delay:0.2s;}
+.waveform-bar:nth-child(4){height:38px;animation-delay:0.3s;}
+.waveform-bar:nth-child(5){height:24px;animation-delay:0.4s;}
+.waveform-bar:nth-child(6){height:16px;animation-delay:0.5s;}
+.waveform-bar:nth-child(7){height:36px;animation-delay:0.3s;}
+.waveform-bar:nth-child(8){height:22px;animation-delay:0.2s;}
+.waveform-bar:nth-child(9){height:30px;animation-delay:0.1s;}
+.waveform-bar:nth-child(10){height:18px;animation-delay:0s;}
+@keyframes wave{0%,100%{transform:scaleY(0.5);}50%{transform:scaleY(1);}}
+
+/* ─── LARGE DESKTOP ─────────────────────────────────── */
+@media(min-width:1400px){
+  .container{max-width:1320px;padding:0 60px;}
+  .hero-inner{max-width:1320px;padding:0 60px;gap:100px;}
+  .footer-inner{max-width:1320px;padding:0 60px;gap:56px;}
+  .footer-bottom-bar{max-width:1320px;padding:20px 60px;}
+  h1{font-size:72px;letter-spacing:-2.5px;}
+  .section-h2{font-size:56px;}
+}
+/* ─── STANDARD DESKTOP ─────────────────────────────── */
+@media(min-width:1200px) and (max-width:1399px){
+  .container{max-width:1180px;padding:0 clamp(40px,4vw,60px);}
+  .hero-inner{max-width:1180px;padding:0 clamp(40px,4vw,60px);gap:80px;}
+  .footer-inner{max-width:1180px;padding:0 clamp(40px,4vw,60px);gap:48px;}
+  .footer-bottom-bar{max-width:1180px;padding:20px clamp(40px,4vw,60px);}
+  h1{font-size:66px;}
+  .section-h2{font-size:50px;}
+}
+/* ─── MID DESKTOP ─────────────────────────────────── */
+@media(min-width:901px) and (max-width:1199px){
+  .container{max-width:960px;padding:0 clamp(28px,4vw,52px);}
+  .hero-inner{max-width:960px;padding:0 clamp(28px,4vw,52px);grid-template-columns:1fr 1fr;gap:clamp(40px,5vw,64px);}
+  .footer-inner{max-width:960px;padding:0 clamp(28px,4vw,52px);}
+  .footer-bottom-bar{max-width:960px;padding:20px clamp(28px,4vw,52px);}
+  .stats-grid{grid-template-columns:repeat(4,1fr);gap:20px;}
+  .platform-grid{grid-template-columns:repeat(3,1fr);gap:22px;}
+  .platform-grid-2col{grid-template-columns:repeat(2,1fr);gap:22px;}
+  .process-grid{grid-template-columns:repeat(3,1fr);gap:20px;}
+  .values-grid{grid-template-columns:repeat(3,1fr);gap:18px;}
+  .pricing-grid{grid-template-columns:repeat(3,1fr);gap:20px;}
+  .chart-grid{grid-template-columns:repeat(2,1fr);gap:24px;}
+  .contact-grid{grid-template-columns:1fr 1fr;gap:40px;}
+  .footer-inner{grid-template-columns:2fr 1fr 1fr 1fr;gap:36px;}
+}
+/* ─── TABLET ─────────────────────────────────────── */
+@media(max-width:900px){
+  .nav-links{display:none;}
+  .hamburger{display:flex;}
+  .btn-demo-nav{display:none;}
+  .nav-logo-text span{display:none;}
+  .hero{padding:clamp(52px,10vw,80px) 0 clamp(40px,7vw,60px);}
+  .hero-inner{grid-template-columns:1fr;gap:36px;padding:0 clamp(20px,5vw,48px);}
+  h1{font-size:clamp(30px,7vw,46px);letter-spacing:-1px;}
+  .hero-body{font-size:15px;max-width:100%;}
+  .hero-btns{flex-direction:row;gap:12px;flex-wrap:wrap;}
+  .hero-btns .btn-primary,.hero-btns .btn-secondary{flex:1;min-width:140px;justify-content:center;}
+  .hero-mini-stats{gap:10px;}
+  .hero-mini-card{min-width:unset;flex:1;}
+  .section-h2{font-size:clamp(24px,5vw,38px);}
+  .para-dark,.para-light{font-size:15px;}
+  .platform-section,.process-section,.section-light,.section-blue{padding:clamp(48px,8vw,72px) 0;}
+  .container{padding:0 clamp(20px,5vw,48px);}
+  .stats-grid{grid-template-columns:1fr 1fr;gap:14px;}
+  .platform-grid{grid-template-columns:1fr 1fr;gap:18px;}
+  .platform-grid-2col{grid-template-columns:1fr 1fr;gap:18px;}
+  .process-grid{grid-template-columns:1fr 1fr;gap:16px;}
+  .values-grid{grid-template-columns:1fr 1fr;gap:14px;}
+  .chart-grid{grid-template-columns:1fr;gap:20px;}
+  .pricing-grid{grid-template-columns:1fr;gap:24px;max-width:480px;margin-left:auto;margin-right:auto;}
+  .contact-grid{grid-template-columns:1fr;gap:32px;}
+  .footer-inner{grid-template-columns:1fr 1fr;gap:28px;}
+  .footer-bottom-bar{flex-direction:column;align-items:flex-start;gap:10px;}
+  .comp-table{font-size:11px;}
+  .comp-table th,.comp-table td{padding:9px 10px;}
+  .score-big-num{font-size:40px;}
+  .score-card{padding:20px;}
+  .platform-img-wrap{height:160px;}
+}
+/* ─── MOBILE ─────────────────────────────────────── */
+@media(max-width:600px){
+  :root{--nav-h:60px;}
+  .nav-logo{font-size:14px;gap:8px;}
+  .nav-logo-icon{width:32px;height:32px;font-size:14px;}
+  .hero{padding:44px 0 32px;}
+  .hero-inner{padding:0 16px;gap:28px;}
+  h1{font-size:clamp(26px,8.5vw,38px);letter-spacing:-0.8px;}
+  .hero-body{font-size:14px;line-height:1.75;}
+  .hero-btns{flex-direction:column;gap:10px;}
+  .hero-btns .btn-primary,.hero-btns .btn-secondary{width:100%;justify-content:center;}
+  .hero-mini-stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+  .hero-mini-card{min-width:unset;}
+  .hero-mini-card strong{font-size:18px;}
+  .container{padding:0 16px;}
+  .platform-section,.process-section,.section-light,.section-blue{padding:40px 0;}
+  .page>section:first-child{padding-top:56px!important;padding-bottom:36px!important;}
+  .section-h2{font-size:clamp(22px,7vw,32px);}
+  .para-dark,.para-light{font-size:14px;line-height:1.8;}
+  .stats-grid{grid-template-columns:1fr 1fr;}
+  .platform-grid{grid-template-columns:1fr;}
+  .platform-grid-2col{grid-template-columns:1fr;}
+  .process-grid{grid-template-columns:1fr;}
+  .values-grid{grid-template-columns:1fr;}
+  .pricing-grid{max-width:100%;grid-template-columns:1fr;}
+  .chart-grid{grid-template-columns:1fr;}
+  .contact-grid{grid-template-columns:1fr;}
+  .stat-num{font-size:clamp(28px,9vw,40px);}
+  .stat-lbl{font-size:12px;}
+  .score-card{padding:16px;}
+  .score-big{flex-direction:column;text-align:center;gap:8px;}
+  .score-big-num{font-size:44px;}
+  .process-num{font-size:32px;}
+  .process-icon{width:42px;height:42px;font-size:17px;}
+  .process-card{padding:20px;}
+  .platform-img-wrap{height:180px;}
+  .price-amount{font-size:38px;}
+  .price-card{padding:24px 20px;}
+  .founder-avatar{width:60px;height:60px;font-size:22px;}
+  .founder-name{font-size:18px;}
+  .founder-card{padding:24px 20px;flex-direction:column;}
+  .value-card{padding:18px;}
+  .footer-inner{grid-template-columns:1fr;gap:28px;}
+  .footer-desc{font-size:13px;}
+  .footer-bottom-bar{flex-direction:column;align-items:flex-start;gap:8px;}
+  .footer-bottom-bar p{font-size:11px;}
+  .footer-bottom-links{flex-wrap:wrap;gap:10px;}
+  .contact-form-wrap{padding:20px 16px;}
+  .contact-info-card{padding:14px;}
+  .form-row input,.form-row select,.form-row textarea{font-size:14px;padding:11px 12px;}
+  .btn-primary,.btn-secondary,.btn-white{padding:12px 18px;font-size:11px;}
+  .chart-box{padding:16px;}
+  .chart-box canvas{height:180px!important;width:100%!important;}
+  .comp-table th:nth-child(2),.comp-table th:nth-child(3),.comp-table th:nth-child(4),
+  .comp-table td:nth-child(2),.comp-table td:nth-child(3),.comp-table td:nth-child(4){display:none;}
+  .comp-table th:first-child,.comp-table td:first-child{font-size:10px;padding:9px 8px;}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════ NAVBAR ═══════════ -->
+<nav class="navbar">
+ <a class="nav-logo" onclick="showPage('home')">
+    <div class="nav-logo-text">
+      TheEchoForge
+      <span>AI Sound Design</span>
+    </div>
+</a>
+
+  <ul class="nav-links">
+    <li><button id="nav-home" class="active" onclick="showPage('home')">Home</button></li>
+    <li><button id="nav-platform" onclick="showPage('platform')">Platform</button></li>
+    <li><button id="nav-process" onclick="showPage('process')">How It Works</button></li>
+    <li><button id="nav-market" onclick="showPage('market')">Market</button></li>
+    <li><button id="nav-pricing" onclick="showPage('pricing')">Pricing</button></li>
+    <li><button id="nav-about" onclick="showPage('about')">About</button></li>
+    <li><button id="nav-faq" onclick="showPage('faq')">FAQ</button></li>
+  </ul>
+
+  <div class="nav-right">
+    <button class="btn-demo-nav" onclick="showPage('contact')">Get Early Access →</button>
+  </div>
+
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mobileNav">
+  <button onclick="showPage('home');closeMobile()">Home</button>
+  <button onclick="showPage('platform');closeMobile()">Platform</button>
+  <button onclick="showPage('process');closeMobile()">How It Works</button>
+  <button onclick="showPage('market');closeMobile()">Market</button>
+  <button onclick="showPage('pricing');closeMobile()">Pricing</button>
+  <button onclick="showPage('about');closeMobile()">About</button>
+  <button onclick="showPage('faq');closeMobile()">FAQ</button>
+  <button class="mob-cta" onclick="showPage('contact');closeMobile()">Get Early Access →</button>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     PAGE : HOME
+═══════════════════════════════════════════════ -->
+<div class="page active" id="page-home">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <!-- LEFT -->
+      <div>
+        <div class="hero-badge">
+          <span class="hero-badge-dot"></span>
+          UK's First Unified AI Sound Design Platform
+        </div>
+
+        <h1>
+          Intelligent Sound.<br>
+          <span class="blue">Limitless</span><br>
+          <span class="dark-blue">Creativity.</span>
+        </h1>
+
+        <div class="hero-rule"></div>
+
+        <p class="hero-body">
+          EchoForge AI empowers filmmakers, game developers, musicians, and creative studios to generate, edit, and integrate professional-quality audio faster, smarter, and more cost-effectively using artificial intelligence  all inside one connected workflow.
+        </p>
+
+        <div class="hero-btns">
+          <button class="btn-primary" onclick="showPage('contact')">Get Early Access →</button>
+          <button class="btn-secondary" onclick="showPage('platform')">Explore Platform</button>
+        </div>
+
+       
+   
+      </div>
+
+      <!-- RIGHT: Dashboard Card -->
+      <div>
+        <div class="score-card">
+          <div class="score-card-top">
+            <div>
+              <div class="score-card-label">EchoForge AI · Sound Studio</div>
+              <div class="dashboard-title">Live Production Session</div>
+            </div>
+            <div class="live-dot-wrap">
+              <div class="live-dot"></div>LIVE
+            </div>
+          </div>
+
+          <!-- Waveform animation -->
+          <div class="waveform" style="margin-bottom:18px;">
+            <div class="waveform-bar"></div><div class="waveform-bar"></div>
+            <div class="waveform-bar"></div><div class="waveform-bar"></div>
+            <div class="waveform-bar"></div><div class="waveform-bar"></div>
+            <div class="waveform-bar"></div><div class="waveform-bar"></div>
+            <div class="waveform-bar"></div><div class="waveform-bar"></div>
+          </div>
+
+          <div class="score-row">
+            <div class="score-icon blue-bg">SFX</div>
+            <span class="score-lbl">Cinematic Impact  Generated</span>
+            <span class="score-val">0:03 ✓</span>
+          </div>
+          <div class="score-row">
+            <div class="score-icon light-bg">AMB</div>
+            <span class="score-lbl">Forest Ambient Environment</span>
+            <span class="score-val">Refining…</span>
+          </div>
+          <div class="score-row">
+            <div class="score-icon green-bg">MUS</div>
+            <span class="score-lbl">Cinematic Pad  Exported to DAW</span>
+            <span class="score-val">Pro Tools ✓</span>
+          </div>
+          <div class="score-row" style="border:none;">
+            <div class="score-icon blue-bg">AI</div>
+            <span class="score-lbl">Closed-Loop Learning Active</span>
+            <span class="score-val" style="color:var(--blue);">Adapting</span>
+          </div>
+
+          <div class="score-big">
+            <div class="score-big-num">40%</div>
+            <div class="score-big-info">
+              <div class="label">Faster Sound Design Workflow</div>
+              <div class="sub">vs traditional fragmented pipeline</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS STRIP -->
+  <section class="section-blue">
+    <div class="container">
+      <div class="label-tag-white">Market Opportunity</div>
+      <h2 class="section-h2 white">The UK Creative Industries Are Booming.<br>Sound Design Is Still Broken.</h2>
+      <div class="section-divider divider-white"></div>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-num">£6.8B</div>
+          <div class="stat-lbl">UK film and high-end TV production spend in 2025  a record high requiring vast amounts of professional audio</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">£8.7B</div>
+          <div class="stat-lbl">UK video game market in 2025, with indie studios unable to afford dedicated in-house sound departments</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">£7.6B</div>
+          <div class="stat-lbl">UK music industry GVA contribution in 2023  record high, with creators needing faster production tools</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">268K</div>
+          <div class="stat-lbl">Creative businesses across the UK in 2024  9.84% of all UK businesses  our active addressable market</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLATFORM PREVIEW -->
+  <section class="platform-section">
+    <div class="container">
+      <div class="label-tag">Core Platform</div>
+      <h2 class="section-h2 dark">Six AI Modules.<br><span style="color:var(--blue-dark);">One Unified Sound Design Workflow.</span></h2>
+      <div class="section-divider divider-blue"></div>
+      <p class="platform-sub para-dark">EchoForge AI brings AI generation, real-time editing, collaboration, DAW integration, and intelligent asset management into a single connected environment  the first platform of its kind focused on the UK creative sector.</p>
+      <div class="platform-grid">
+
+        <div class="platform-card">
+          <div class="platform-img-wrap">
+            <img src="the1.jpg" alt="AI Sound Generation">
+          </div>
+          <div class="inner">
+            <div class="element-badge">Module A · Generation</div>
+            <h3>AI-Driven Sound Generation Engine</h3>
+            <p>Generate original sound effects, ambient textures, music stems, and adaptive audio from simple creative inputs  mood, scene, genre, or emotional intent.</p>
+            <div class="more-text">Instead of searching pre-made libraries or briefing external contractors, creators describe what they need and receive tailored audio instantly. The system supports both beginners and professionals  non-experts benefit from simplified workflows while advanced users retain detailed control.</div>
+            <button class="expand-btn" onclick="toggleCard(this)">Learn More ▼</button>
+          </div>
+        </div>
+
+        <div class="platform-card">
+          <div class="platform-img-wrap">
+            <img src="the2.jpg" alt="Real-Time Audio Processing">
+          </div>
+          <div class="inner">
+            <div class="element-badge">Module B · Real-Time Processing</div>
+            <h3>Real-Time Audio Processing & Feedback Loop</h3>
+            <p>Hear changes instantly as you adjust tone, intensity, spatial depth, and atmosphere  no rendering delays, no export cycles, no breaking creative flow.</p>
+            <div class="more-text">The platform eliminates the traditional "edit → render → review" delay. Every adjustment is heard immediately, allowing creators to experiment freely and make decisions in context. This creates a conversational creative process where sound can be shaped like directing, not editing.</div>
+            <button class="expand-btn" onclick="toggleCard(this)">Learn More ▼</button>
+          </div>
+        </div>
+
+        <div class="platform-card">
+          <div class="platform-img-wrap">
+            <img src="the3.jpg" alt="DAW Integration">
+          </div>
+          <div class="inner">
+            <div class="element-badge">Module D · DAW Integration</div>
+            <h3>Seamless DAW & Engine Integration Layer</h3>
+            <p>Connect directly with Pro Tools, Ableton Live, Logic Pro, Unity, and Unreal Engine  AI sound design embedded into the tools you already use.</p>
+            <div class="more-text">EchoForge AI becomes part of your existing production environment, not a separate tool requiring a context switch. Plugin and API-based architecture ensures generated audio moves seamlessly into professional timelines without manual file conversion or friction.</div>
+            <button class="expand-btn" onclick="toggleCard(this)">Learn More ▼</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</div><!-- /page-home -->
+
+
+<!-- ═══════════════════════════════════════════
+     PAGE : PLATFORM
+═══════════════════════════════════════════════ -->
+<div class="page" id="page-platform">
+  <section style="background:linear-gradient(140deg,#F3EEFF 0%,#E9DFFE 60%,#DDD6FE 100%);padding:clamp(80px,12vw,120px) 0 clamp(60px,8vw,80px);">
+    <div class="container">
+      <div class="label-tag">Full Platform</div>
+      <h2 class="section-h2 dark">Six Intelligence Modules.<br><span style="color:var(--blue-dark);">One Connected Sound Design Operating Layer.</span></h2>
+      <div class="section-divider divider-blue"></div>
+      <p class="para-dark" style="max-width:680px;margin-bottom:40px;">Every feature is built for professional creative production environments  not as a standalone AI toy, but as a continuous workflow system that connects generation, editing, collaboration, and delivery inside a single intelligent platform.</p>
+      <div class="hero-btns">
+        <button class="btn-primary" onclick="showPage('contact')">Request Early Access →</button>
+        <button class="btn-secondary" onclick="showPage('pricing')">View Pricing</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-light">
+    <div class="container">
+      <div class="platform-grid platform-grid-2col">
+
+        <div class="platform-card">
+          <div class="platform-img-wrap" style="height:220px;">
+            <img src="the4.jpg" alt="AI Sound Generation" style="width:100%;height:100%;object-fit:cover;">
+          </div>
+          <div class="inner">
+            <div class="element-badge">Module A · Generation</div>
+            <h3>AI-Driven Sound Generation Engine</h3>
+            <p>Generate original SFX, ambient environments, music stems, and adaptive audio from creative inputs  mood, genre, scene description, or emotional intent. Supports beginners and professionals equally.</p>
+            <div class="more-text">The generation engine interprets human-facing creative language rather than technical audio parameters. A filmmaker can describe "tense sci-fi corridor with distant mechanical hum" and receive tailored, production-ready audio in seconds. The system learns continuously from diverse audio datasets, improving output quality and creativity over time.</div>
+            <button class="expand-btn" onclick="toggleCard(this)">Learn More ▼</button>
+          </div>
+        </div>
+
+        <div class="platform-card">
+          <div class="platform-img-wrap" style="height:220px;">
+            <img src="the5.jpg" alt="Real-Time Processing" style="width:100%;height:100%;object-fit:cover;">
+          </div>
+          <div class="inner">
+            <div class="element-badge">Module B · Real-Time Processing</div>
+            <h3>Real-Time Audio Processing & Instant Feedback</h3>
+            <p>Adjust tone, intensity, spatial depth, layering, and atmosphere  all with immediate auditory feedback. No rendering waits. No export cycles. Sound design becomes interactive, not technical.</p>
+            <div class="more-text">This creates a continuous creative loop rather than a slow edit-render-review cycle. The platform supports faster decision-making and encourages experimentation, particularly in game development and film post-production where timelines are tight and revisions are constant.</div>
+            <button class="expand-btn" onclick="toggleCard(this)">Learn More ▼</button>
+          </div>
+        </div>
+
+        <div class="platform-card">
+          <div class="platform-img-wrap" style="height:220px;">
+            <img src="the6.jpg" alt="Closed-Loop AI Learning" style="width:100%;height:100%;object-fit:cover;">
+          </div>
+          <div class="inner">
+            <div class="element-badge">Module C · AI Optimisation</div>
+            <h3>Closed-Loop AI Optimisation System</h3>
+            <p>Every edit, export, rejection, and approval feeds back into the system  the platform continuously improves based on real production behaviour, not generic training data.</p>
+            <div class="more-text">Unlike static AI generators, EchoForge learns how actual creative teams work. Over time, the system develops a stronger understanding of user preferences and production patterns across different industries and project types. This proprietary production intelligence becomes the platform's strongest competitive moat.</div>
+            <button class="expand-btn" onclick="toggleCard(this)">Learn More ▼</button>
+          </div>
+        </div>
+
+        <div class="platform-card">
+          <div class="platform-img-wrap" style="height:220px;">
+            <img src="the7.jpg" alt="DAW Integration" style="width:100%;height:100%;object-fit:cover;">
+          </div>
+          <div class="inner">
+            <div class="element-badge">Module D · DAW Integration</div>
+            <h3>Seamless DAW & Game Engine Integration</h3>
+            <p>Plugin and API-based integration with Pro Tools, Ableton Live, Logic Pro, Unity, and Unreal Engine. AI sound design embedded directly into the tools creators already use.</p>
+            <div class="more-text">The platform does not aim to replace professional tools but to extend them. Sound is generated and refined inside EchoForge, then moves seamlessly into existing production timelines without manual file conversion. This reduces adoption friction and avoids disruption to established workflows.</div>
+            <button class="expand-btn" onclick="toggleCard(this)">Learn More ▼</button>
+          </div>
+        </div>
+
+        <div class="platform-card">
+          <div class="platform-img-wrap" style="height:220px;">
+            <img src="the8.jpg" alt="Collaborative Workspace" style="width:100%;height:100%;object-fit:cover;">
+          </div>
+          <div class="inner">
+            <div class="element-badge">Module E · Collaboration</div>
+            <h3>Collaborative Audio Production Workspace</h3>
+            <p>Shared project spaces with version control, live comments, role-based permissions, and approval workflows  designed for distributed creative teams, not solo users.</p>
+            <div class="more-text">Modern content production is rarely a solo process. Projects involve editors, directors, sound supervisors, composers, and agencies across different locations. EchoForge replaces fragmented email and file exchanges with a structured, collaborative sound design environment connected directly to project context.</div>
+            <button class="expand-btn" onclick="toggleCard(this)">Learn More ▼</button>
+          </div>
+        </div>
+
+        <div class="platform-card">
+          <div class="platform-img-wrap" style="height:220px;">
+            <img src="the9.jpg" alt="Smart Asset Management" style="width:100%;height:100%;object-fit:cover;">
+          </div>
+          <div class="inner">
+            <div class="element-badge">Module F · Asset Intelligence</div>
+            <h3>Intelligent Audio Management & Enhancement</h3>
+            <p>Auto-tagging by mood, genre, instrumentation, scene type, and usage context. AI-driven noise reduction, level balancing, and clarity enhancement  production-ready outputs, automatically.</p>
+            <div class="more-text">As creative teams produce larger volumes of content, audio management becomes increasingly difficult. EchoForge automates categorisation, enhancement, and organisation at the point of generation rather than after production  keeping libraries searchable, reusable, and production-ready across all projects.</div>
+            <button class="expand-btn" onclick="toggleCard(this)">Learn More ▼</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Competitor Comparison -->
+  <section class="process-section">
+    <div class="container">
+      <div class="label-tag">Competitive Landscape</div>
+      <h2 class="section-h2 dark">Why No Existing Tool Can Replicate<br>EchoForge AI's Unified Workflow.</h2>
+      <div class="section-divider divider-blue"></div>
+      <p class="para-dark" style="max-width:680px;margin-bottom:32px;">The sound design industry is fragmented. DAWs are powerful but manual. AI generators are creative but isolated. Libraries are fast but unoriginal. No single platform connects all stages into one continuous, intelligent system  until now.</p>
+      <div style="overflow-x:auto;">
+        <table class="comp-table">
+          <thead>
+            <tr>
+              <th>Feature / Capability</th>
+              <th>Pro Tools / Logic Pro</th>
+              <th>Epidemic Sound / Libraries</th>
+              <th>Standalone AI Generators</th>
+              <th>FMOD / Wwise</th>
+              <th class="highlight-col">EchoForge AI</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>AI Sound Generation</td><td class="cross">No</td><td class="cross">No (retrieval only)</td><td class="check">Basic prompts</td><td class="cross">No</td><td class="check highlight-col">✓ Intent-driven generation</td></tr>
+            <tr><td>Real-Time Editing & Feedback</td><td class="cross">Manual only</td><td class="cross">No</td><td class="cross">No</td><td class="cross">No</td><td class="check highlight-col">✓ Instant parameter control</td></tr>
+            <tr><td>DAW / Engine Integration</td><td class="check">Native</td><td class="cross">Export only</td><td class="cross">Export only</td><td class="check">Game engines</td><td class="check highlight-col">✓ Plugin + API layer</td></tr>
+            <tr><td>Closed-Loop AI Learning</td><td class="cross">No</td><td class="cross">No</td><td class="cross">No</td><td class="cross">No</td><td class="check highlight-col">✓ Production feedback system</td></tr>
+            <tr><td>Multi-User Collaboration</td><td class="cross">Limited</td><td class="cross">No</td><td class="cross">No</td><td class="cross">No</td><td class="check highlight-col">✓ Built-in team workspace</td></tr>
+            <tr><td>Intelligent Asset Management</td><td class="cross">Manual</td><td class="check">Basic tagging</td><td class="cross">No</td><td class="cross">No</td><td class="check highlight-col">✓ AI auto-tag + enhance</td></tr>
+            <tr><td>Target Audience</td><td>Large studios</td><td>Broad content creators</td><td>Casual experimenters</td><td>Game developers only</td><td class="check highlight-col">✓ All UK creative sectors</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Architecture Strip -->
+  <section class="section-blue">
+    <div class="container">
+      <div class="label-tag-white">Platform Architecture</div>
+      <h2 class="section-h2 white">Built as a Sound Design Operating Layer Between<br>Creative Intent and Professional Delivery.</h2>
+      <div class="section-divider divider-white"></div>
+      <p class="para-light" style="max-width:700px;margin-bottom:40px;">
+        EchoForge AI acts as the connective intelligence between what a creator imagines and what gets delivered  combining AI generation, real-time processing, collaborative infrastructure, and workflow integration into one continuous, closed-loop system.
+      </p>
+      <div class="stats-grid">
+        <div class="stat-card"><div class="stat-num">74%</div><div class="stat-lbl">Survey respondents want real-time editing inside their DAW rather than a standalone web-based generator</div></div>
+        <div class="stat-card"><div class="stat-num">88%</div><div class="stat-lbl">Of survey participants cited AI Sound Generation as the most desired new feature in their production workflow</div></div>
+        <div class="stat-card"><div class="stat-num">65%</div><div class="stat-lbl">Willing to pay monthly for a tool that reduces sound design time by 30–40% while preserving creative control</div></div>
+        <div class="stat-card"><div class="stat-num">4.6×</div><div class="stat-lbl">UK creative industries growing 4× faster than UK GDP  film, gaming, and music are our core growth markets</div></div>
+      </div>
+    </div>
+  </section>
+</div><!-- /page-platform -->
+
+
+<!-- ═══════════════════════════════════════════
+     PAGE : PROCESS (HOW IT WORKS)
+═══════════════════════════════════════════════ -->
+<div class="page" id="page-process">
+  <section style="background:linear-gradient(140deg,#F3EEFF 0%,#E9DFFE 60%,#DDD6FE 100%);padding:clamp(80px,12vw,120px) 0 clamp(60px,8vw,80px);">
+    <div class="container">
+      <div class="label-tag">How It Works</div>
+      <h2 class="section-h2 dark">From Creative Brief to<br><span style="color:var(--blue-dark);">Production-Ready Sound in One Continuous Workflow.</span></h2>
+      <div class="section-divider divider-blue"></div>
+      <p class="para-dark" style="max-width:680px;">EchoForge AI replaces a fragmented, multi-tool pipeline with a single intelligent environment  where idea, generation, refinement, collaboration, and delivery all happen in one connected loop.</p>
+    </div>
+  </section>
+
+  <section class="process-section">
+    <div class="container">
+      <div class="label-tag">Six-Step Process</div>
+      <h2 class="section-h2 dark">How EchoForge AI Works.</h2>
+      <div class="section-divider divider-blue"></div>
+      <div class="process-grid">
+
+        <div class="process-card" style="overflow:hidden;padding:0;">
+          <div style="height:160px;overflow:hidden;">
+            <img src="the10.jpg" alt="Creative Brief" style="width:100%;height:100%;object-fit:cover;transition:transform 0.4s;">
+          </div>
+          <div style="padding:clamp(20px,2.5vw,28px);">
+          <div class="process-num">01</div>
+          <div class="process-icon"><i class="fas fa-lightbulb"></i></div>
+          <h3>Describe Your Creative Intent</h3>
+          <p>Input a scene description, mood, genre, or narrative context in natural language. Describe "dark dungeon with low mechanical rumble and distant echoes" and the system understands creative intent, not technical parameters.</p>
+          </div>
+        </div>
+
+        <div class="process-card" style="overflow:hidden;padding:0;">
+          <div style="height:160px;overflow:hidden;">
+            <img src="the11.jpg" alt="AI Sound Generation" style="width:100%;height:100%;object-fit:cover;transition:transform 0.4s;">
+          </div>
+          <div style="padding:clamp(20px,2.5vw,28px);">
+          <div class="process-num">02</div>
+          <div class="process-icon"><i class="fas fa-magic"></i></div>
+          <h3>AI Sound Generation</h3>
+          <p>The generative engine produces multiple tailored audio variations instantly. Sound effects, ambient textures, music stems, and atmospheric layers  original and project-specific, not recycled library assets.</p>
+          </div>
+        </div>
+
+        <div class="process-card" style="overflow:hidden;padding:0;">
+          <div style="height:160px;overflow:hidden;">
+            <img src="the12.jpg" alt="Real-Time Refinement" style="width:100%;height:100%;object-fit:cover;transition:transform 0.4s;">
+          </div>
+          <div style="padding:clamp(20px,2.5vw,28px);">
+          <div class="process-num">03</div>
+          <div class="process-icon"><i class="fas fa-sliders-h"></i></div>
+          <h3>Real-Time Refinement</h3>
+          <p>Shape the sound instantly using intuitive controls  intensity, texture, spatial depth, tone, tempo, and layering. Every adjustment is heard immediately without re-rendering. Sound design becomes a conversation, not an engineering task.</p>
+          </div>
+        </div>
+
+        <div class="process-card" style="overflow:hidden;padding:0;">
+          <div style="height:160px;overflow:hidden;">
+            <img src="the13.jpg" alt="Team Collaboration" style="width:100%;height:100%;object-fit:cover;transition:transform 0.4s;">
+          </div>
+          <div style="padding:clamp(20px,2.5vw,28px);">
+          <div class="process-num">04</div>
+          <div class="process-icon"><i class="fas fa-users"></i></div>
+          <h3>Collaborate with Your Team</h3>
+          <p>Work on shared audio projects simultaneously. Directors, composers, and game developers leave comments, review versions, and approve assets inside the same workspace. No more fragmented email chains or misplaced files.</p>
+          </div>
+        </div>
+
+        <div class="process-card" style="overflow:hidden;padding:0;">
+          <div style="height:160px;overflow:hidden;">
+            <img src="the14.jpg" alt="Export to DAW" style="width:100%;height:100%;object-fit:cover;transition:transform 0.4s;">
+          </div>
+          <div style="padding:clamp(20px,2.5vw,28px);">
+          <div class="process-num">05</div>
+          <div class="process-icon"><i class="fas fa-plug"></i></div>
+          <h3>Export Directly into Your Pipeline</h3>
+          <p>Export in WAV, MP3, and standard formats directly into Pro Tools, Ableton, Logic Pro, Unity, or Unreal Engine. Zero friction. Zero file conversion. The sound is production-ready and labelled, exactly where you need it.</p>
+          </div>
+        </div>
+
+        <div class="process-card" style="overflow:hidden;padding:0;">
+          <div style="height:160px;overflow:hidden;">
+            <img src="the15.jpg" alt="AI Learning Loop" style="width:100%;height:100%;object-fit:cover;transition:transform 0.4s;">
+          </div>
+          <div style="padding:clamp(20px,2.5vw,28px);">
+          <div class="process-num">06</div>
+          <div class="process-icon"><i class="fas fa-brain"></i></div>
+          <h3>Closed-Loop Learning Improves Every Session</h3>
+          <p>Every edit, export, approval, and rejection is captured as structured feedback. The system continuously improves its understanding of your creative style, production preferences, and workflow patterns  becoming more accurate with every project.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Use Case -->
+  <section class="section-light">
+    <div class="container">
+      <div class="label-tag">Real Use Case</div>
+      <h2 class="section-h2 dark">An Indie Game Studio in London<br>Cuts Sound Production Time by 60%.</h2>
+      <div class="section-divider divider-blue"></div>
+      <div class="platform-grid platform-grid-2col" style="margin-top:32px;">
+        <div style="background:#fff;border:1px solid var(--card-border);border-radius:16px;padding:clamp(20px,3vw,32px);">
+          <div class="element-badge" style="margin-bottom:14px;">The Problem</div>
+          <h3 style="font-family:var(--display);font-weight:700;color:var(--text-dark);margin-bottom:12px;font-size:clamp(16px,1.4vw,19px);">Lean Studio. Tight Deadline. Full Audio Identity Needed.</h3>
+          <p style="font-size:14px;color:var(--text-muted);line-height:1.75;">A small London indie studio building a fantasy adventure game needed a complete sound identity  spell effects, ambient forests, character actions, UI sounds, and adaptive music  but couldn't afford to outsource or hire a dedicated sound designer. Stock library audio felt generic and didn't match their unique game world.</p>
+        </div>
+        <div style="background:#fff;border:1px solid var(--card-border);border-radius:16px;padding:clamp(20px,3vw,32px);">
+          <div class="element-badge" style="margin-bottom:14px;">The EchoForge Outcome</div>
+          <h3 style="font-family:var(--display);font-weight:700;color:var(--text-dark);margin-bottom:12px;font-size:clamp(16px,1.4vw,19px);">Original Audio. In-House. In Days, Not Weeks.</h3>
+          <p style="font-size:14px;color:var(--text-muted);line-height:1.75;">Using EchoForge AI, the studio generated tailored sound assets directly from game descriptions, refined them in real time, collaborated asynchronously across the team, and exported directly into Unity. The game launched with a cohesive, professional audio identity at a fraction of the traditional cost and timeline.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Strip -->
+  <section class="section-blue">
+    <div class="container">
+      <div class="label-tag-white">Workflow Intelligence Architecture</div>
+      <h2 class="section-h2 white">Built as a Trust Layer Between<br>Creative Intent and Production Reality.</h2>
+      <div class="section-divider divider-white"></div>
+      <p class="para-light" style="max-width:700px;margin-bottom:40px;">
+        EchoForge AI replaces the fragmented multi-tool pipeline  separate tools for generation, editing, collaboration, asset management, and export  with one intelligent, continuous environment that improves with every session.
+      </p>
+      <div class="stats-grid">
+        <div class="stat-card"><div class="stat-num">78%</div><div class="stat-lbl">Survey respondents said sound design is the most time-consuming part of their independent production workflow</div></div>
+        <div class="stat-card"><div class="stat-num">70%</div><div class="stat-lbl">Regularly rely on stock audio libraries  yet describe them as "not unique enough" for professional-grade work</div></div>
+        <div class="stat-card"><div class="stat-num">74%</div><div class="stat-lbl">Use multiple disconnected tools (DAW + libraries + plugins + collaboration apps), calling the workflow "fragmented"</div></div>
+        <div class="stat-card"><div class="stat-num">153</div><div class="stat-lbl">UK creative professionals surveyed  82% interested in AI tools, 63% willing to trial, 48% likely to pay</div></div>
+      </div>
+    </div>
+  </section>
+</div><!-- /page-process -->
+
+
+<!-- ═══════════════════════════════════════════
+     PAGE : MARKET
+═══════════════════════════════════════════════ -->
+<div class="page" id="page-market">
+  <section style="background:linear-gradient(140deg,#F3EEFF 0%,#E9DFFE 60%,#DDD6FE 100%);padding:clamp(80px,12vw,120px) 0 clamp(60px,8vw,80px);">
+    <div class="container">
+      <div class="label-tag">Market Research</div>
+      <h2 class="section-h2 dark">The UK Creative Sector Is a<br><span style="color:var(--blue-dark);">Record-Breaking, Fast-Growing, Underserved Market.</span></h2>
+      <div class="section-divider divider-blue"></div>
+      <p class="para-dark" style="max-width:680px;">The UK's film, gaming, music, and advertising sectors are growing faster than the economy as a whole  and every creator in those sectors needs high-quality audio. Most of them are currently underserved by fragmented, expensive, or technically inaccessible tools.</p>
+    </div>
+  </section>
+
+  <section class="process-section">
+    <div class="container">
+      <div class="label-tag">Market Data</div>
+      <h2 class="section-h2 dark">UK Creative Industry Growth Is<br>Four Times the National Average.</h2>
+      <div class="section-divider divider-blue"></div>
+      <div class="chart-grid">
+        <div class="chart-box">
+          <h4>UK Creative Sector Revenue by Industry (2025, £B)</h4>
+          <canvas id="chartGrowth"></canvas>
+        </div>
+        <div class="chart-box">
+          <h4>Survey: Pain Points Among UK Creators (n=153)</h4>
+          <canvas id="chartPain"></canvas>
+        </div>
+        <div class="chart-box">
+          <h4>EchoForge Revenue Forecast (£000s, Years 1–3)</h4>
+          <canvas id="chartReadiness"></canvas>
+        </div>
+        <div class="chart-box">
+          <h4>Competitive Positioning  Feature Radar</h4>
+          <canvas id="chartRadar"></canvas>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-blue">
+    <div class="container">
+      <div class="label-tag-white">Serviceable Obtainable Market</div>
+      <h2 class="section-h2 white">50,000 UK Creators.<br>A Clear Path to £910k Cumulative Revenue.</h2>
+      <div class="section-divider divider-white"></div>
+      <div class="stats-grid">
+        <div class="stat-card"><div class="stat-num">£21k</div><div class="stat-lbl">Year 1 revenue target  120 paying customers, post-MVP launch from Month 6, blended ARPU £556/year</div></div>
+        <div class="stat-card"><div class="stat-num">£216k</div><div class="stat-lbl">Year 2 revenue  587 paying customers through UK-focused commercial expansion and workflow integration</div></div>
+        <div class="stat-card"><div class="stat-num">£673k</div><div class="stat-lbl">Year 3 revenue  1,279 paying customers, international expansion begins, enterprise licensing grows</div></div>
+        <div class="stat-card"><div class="stat-num">85%</div><div class="stat-lbl">Gross margin  SaaS model scales efficiently; cost of sales 14–15% of revenue via cloud and compute</div></div>
+      </div>
+    </div>
+  </section>
+</div><!-- /page-market -->
+
+
+<!-- ═══════════════════════════════════════════
+     PAGE : PRICING
+═══════════════════════════════════════════════ -->
+<div class="page" id="page-pricing">
+  <section style="background:linear-gradient(140deg,#F3EEFF 0%,#E9DFFE 60%,#DDD6FE 100%);padding:clamp(80px,12vw,120px) 0 clamp(60px,8vw,80px);">
+    <div class="container">
+      <div class="label-tag">Pricing & Plans</div>
+      <h2 class="section-h2 dark">Professional Sound Design.<br><span style="color:var(--blue-dark);">Accessible to Every Creator.</span></h2>
+      <div class="section-divider divider-blue"></div>
+      <p class="para-dark" style="max-width:640px;">Four subscription tiers designed to scale from solo creators to full production studios. A free tier lets you experiment  paid plans unlock full AI generation, real-time editing, DAW integration, and collaboration tools.</p>
+    </div>
+  </section>
+
+  <section class="process-section">
+    <div class="container">
+      <div class="pricing-grid">
+
+        <div class="price-card">
+          <div class="price-tier">Starter</div>
+          <div class="price-amount"><sup>£</sup>12<small>/month</small></div>
+          <p class="price-desc">Solo creators and hobbyists getting started with AI sound design.</p>
+          <ul class="price-features">
+            <li>AI sound generation (30 credits/month)</li>
+            <li>Basic real-time parameter controls</li>
+            <li>WAV/MP3 export</li>
+            <li>Personal project library</li>
+            <li>Auto-tagging (basic)</li>
+            <li>Email support</li>
+          </ul>
+          <button class="price-btn outline" onclick="showPage('contact')">Start Free Trial</button>
+        </div>
+
+        <div class="price-card featured">
+          <div class="featured-badge">Most Popular</div>
+          <div class="price-tier">Creator</div>
+          <div class="price-amount"><sup>£</sup>29<small>/month</small></div>
+          <p class="price-desc">Active freelancers  the core tier for professional independent creators.</p>
+          <ul class="price-features">
+            <li>AI sound generation (unlimited)</li>
+            <li>Full real-time editing suite</li>
+            <li>DAW export integration</li>
+            <li>Advanced auto-tagging & organisation</li>
+            <li>AI enhancement (noise reduction, levelling)</li>
+            <li>Closed-loop learning active</li>
+            <li>Priority support</li>
+          </ul>
+          <button class="price-btn" onclick="showPage('contact')">Get Started →</button>
+        </div>
+
+        <div class="price-card">
+          <div class="price-tier">Pro</div>
+          <div class="price-amount"><sup>£</sup>59<small>/month</small></div>
+          <p class="price-desc">Power users and small studios requiring advanced workflows.</p>
+          <ul class="price-features">
+            <li>Everything in Creator</li>
+            <li>Full DAW plugin access (Pro Tools, Ableton, Logic)</li>
+            <li>Game engine integration (Unity / Unreal)</li>
+            <li>Team workspace (up to 3 users)</li>
+            <li>Version control & project branching</li>
+            <li>Advanced AI model selection</li>
+            <li>API access</li>
+          </ul>
+          <button class="price-btn outline" onclick="showPage('contact')">Get Started</button>
+        </div>
+
+      </div>
+
+      <div style="margin-top:40px;background:#fff;border:1px solid var(--card-border);border-radius:16px;padding:clamp(24px,3vw,36px);text-align:center;">
+        <div class="element-badge" style="margin-bottom:12px;">Studio Tier · Per Seat</div>
+        <div style="font-family:var(--display);font-size:clamp(28px,3vw,40px);font-weight:800;color:var(--text-dark);margin-bottom:8px;"><sup style="font-size:18px;color:var(--blue);">£</sup>79 <span style="font-size:16px;color:var(--text-muted);font-weight:500;">per seat / month</span></div>
+        <p style="max-width:600px;margin:0 auto 24px;color:var(--text-muted);font-size:14px;line-height:1.7;">For agencies, production studios, and enterprise teams (typically 3–6 seats). Includes white-label options, custom DAW integrations, SLA-backed priority processing, advanced team management, and dedicated onboarding support.</p>
+        <button class="btn-primary" onclick="showPage('contact')">Request Studio Demo →</button>
+      </div>
+
+      <div style="margin-top:48px;">
+        <div class="label-tag">Add-Ons</div>
+        <h3 class="section-h2 dark" style="font-size:clamp(22px,2.5vw,32px);margin-bottom:8px;">Usage Credits & Premium Features</h3>
+        <div class="section-divider divider-blue"></div>
+        <div class="process-grid">
+          <div class="process-card">
+            <div class="process-icon"><i class="fas fa-coins"></i></div>
+            <h3>Rendering Credits</h3>
+            <p>Pay-as-you-go credits for high-fidelity, compute-intensive audio generation. Buy in bundles of 100, 500, or 1,000 credits  suitable for high-volume production periods.</p>
+          </div>
+          <div class="process-card">
+            <div class="process-icon"><i class="fas fa-headphones"></i></div>
+            <h3>Specialised Sound Packs</h3>
+            <p>Curated AI-generated libraries for specific industries  cinematic horror, game fantasy, podcast branding, advertising sonic identity, and immersive VR environments.</p>
+          </div>
+          <div class="process-card">
+            <div class="process-icon"><i class="fas fa-graduation-cap"></i></div>
+            <h3>Education Licences</h3>
+            <p>Discounted multi-seat academic licences for universities, film schools, and game development programmes. Embed AI sound design into the next generation of UK creators.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div><!-- /page-pricing -->
+
+
+<!-- ═══════════════════════════════════════════
+     PAGE : ABOUT
+═══════════════════════════════════════════════ -->
+<div class="page" id="page-about">
+  <section style="background:linear-gradient(140deg,#F3EEFF 0%,#E9DFFE 60%,#DDD6FE 100%);padding:clamp(80px,12vw,120px) 0 clamp(60px,8vw,80px);">
+    <div class="container">
+      <div class="label-tag">About Us</div>
+      <h2 class="section-h2 dark">Built by a Creator<br><span style="color:var(--blue-dark);">Who Lived the Problem.</span></h2>
+      <div class="section-divider divider-blue"></div>
+      <p class="para-dark" style="max-width:680px;">EchoForge AI was not built from a theoretical perspective or an investment thesis. It was built from direct experience inside real sound design workflows  from the frustration of fragmented tools, slow iteration cycles, and expensive outsourcing that smaller creators face every day.</p>
+    </div>
+  </section>
+
+  <section class="process-section">
+    <div class="container">
+
+      <!-- Founder Card - full width, enhanced -->
+      <div class="label-tag">Founder Profile</div>
+      <div class="founder-profile-grid">
+
+        <!-- Left: Photo + identity -->
+        <div style="display:flex;flex-direction:column;gap:20px;">
+          <div class="founder-photo-wrap" style="border-radius:20px;overflow:hidden;height:340px;box-shadow:0 8px 40px rgba(124,58,237,0.15);border:1px solid var(--card-border);">
+            <img src="https://images.unsplash.com/photo-1556157382-97eda2d62296?w=700&h=680&fit=crop&crop=faces" alt="Darpit Mehta - Founder EchoForge AI" style="width:100%;height:100%;object-fit:cover;">
+          </div>
+          <div style="background:#fff;border:1px solid var(--card-border);border-radius:16px;padding:22px;">
+            <div class="founder-name">Darpit Mehta</div>
+            <div class="founder-role">Founder & CEO · EchoForge AI · London, UK</div>
+            
+          </div>
+        </div>
+
+        <!-- Right: Story + visual highlight -->
+        <div style="display:flex;flex-direction:column;gap:20px;">
+          <div style="background:#fff;border:1px solid var(--card-border);border-radius:18px;padding:clamp(24px,3vw,36px);box-shadow:0 4px 20px rgba(124,58,237,0.06);">
+            <div class="element-badge" style="margin-bottom:14px;">The Story Behind EchoForge</div>
+            <p class="para-dark" style="font-size:15px;margin-bottom:16px;">Darpit Mehta is a sound designer, audio engineer, and music composer based in the United Kingdom. His professional path combines creative sound design with technical implementation  spanning film, games, and interactive media. This combination of creative and technical exposure directly shaped EchoForge AI.</p>
+            <p class="para-dark" style="font-size:15px;">Through years of freelance and studio-based work, he repeatedly encountered the same challenges: excessive time exporting and reworking audio, fragmented toolchains, lack of real-time feedback, and high outsourcing costs. EchoForge AI is the solution he wished existed.</p>
+          </div>
+
+          <!-- Studio photo -->
+          <div class="founder-studio-img" style="border-radius:16px;overflow:hidden;height:200px;box-shadow:0 4px 20px rgba(124,58,237,0.1);border:1px solid var(--card-border);">
+            <img src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=900&h=400&fit=crop" alt="Professional sound design studio" style="width:100%;height:100%;object-fit:cover;">
+          </div>
+
+          <!-- Quick facts strip -->
+          <div class="founder-stats-strip" style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;">
+            <div style="background:linear-gradient(135deg,rgba(124,58,237,0.08),rgba(167,139,250,0.12));border:1px solid rgba(124,58,237,0.15);border-radius:12px;padding:16px;text-align:center;">
+              <div style="font-family:var(--display);font-size:22px;font-weight:800;color:var(--blue-dark);">5+</div>
+              <div style="font-size:11px;color:var(--text-muted);font-family:var(--mono);margin-top:4px;">Years in Sound Design</div>
+            </div>
+            <div style="background:linear-gradient(135deg,rgba(124,58,237,0.08),rgba(167,139,250,0.12));border:1px solid rgba(124,58,237,0.15);border-radius:12px;padding:16px;text-align:center;">
+              <div style="font-family:var(--display);font-size:22px;font-weight:800;color:var(--blue-dark);">3</div>
+              <div style="font-size:11px;color:var(--text-muted);font-family:var(--mono);margin-top:4px;">Industries Spanned</div>
+            </div>
+            <div style="background:linear-gradient(135deg,rgba(124,58,237,0.08),rgba(167,139,250,0.12));border:1px solid rgba(124,58,237,0.15);border-radius:12px;padding:16px;text-align:center;">
+              <div style="font-family:var(--display);font-size:22px;font-weight:800;color:var(--blue-dark);">UK</div>
+              <div style="font-size:11px;color:var(--text-muted);font-family:var(--mono);margin-top:4px;">Based, London</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+   </section>
+</div><!-- /page-about -->
+
+
+<!-- ═══════════════════════════════════════════
+     PAGE : FAQ
+═══════════════════════════════════════════════ -->
+<div class="page" id="page-faq">
+  <section style="background:linear-gradient(140deg,#F3EEFF 0%,#E9DFFE 60%,#DDD6FE 100%);padding:clamp(80px,12vw,120px) 0 clamp(60px,8vw,80px);">
+    <div class="container">
+      <div class="label-tag">FAQ</div>
+      <h2 class="section-h2 dark">Frequently Asked<br><span style="color:var(--blue-dark);">EchoForge AI Questions.</span></h2>
+      <div class="section-divider divider-blue"></div>
+      <p class="para-dark" style="max-width:640px;">Everything you need to know about EchoForge AI  from how the closed-loop AI learning system works to how we handle licensing and IP for commercial productions.</p>
+    </div>
+  </section>
+
+  <section class="process-section">
+    <div class="container">
+      <div class="faq-list">
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFAQ(this)">What makes EchoForge AI different from standalone AI audio generators like ElevenLabs Audio or Suno? <span class="faq-icon"><i class="fas fa-plus"></i></span></button>
+          <div class="faq-a">Standalone AI audio generators produce sound from prompts but stop there. The output is a file that must then be manually imported into a DAW, edited, and integrated. EchoForge AI is designed differently  it embeds AI generation directly inside the production workflow. Sound is not a final output; it's the starting point of an interactive creative process that includes real-time refinement, team collaboration, asset management, and direct export into DAWs and game engines. The platform also learns from how you use it, improving outputs over time based on real production behaviour. No existing tool connects all these stages into one continuous environment.</div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFAQ(this)">How does the closed-loop AI learning system work and why is it valuable? <span class="faq-icon"><i class="fas fa-plus"></i></span></button>
+          <div class="faq-a">Every interaction with the platform  what you generate, what you modify, what you export, and what you reject  is captured as structured feedback. This data is used to refine how the system interprets your creative prompts, what parameters it defaults to, and how accurately it predicts what you need for specific project types. Over time, the system develops a deeper understanding of your production style, your team's preferences, and the requirements of your industry. This means an advertising agency optimising for fast turnaround gets a different, increasingly accurate experience than a horror filmmaker optimising for atmosphere. The more the platform is used in real creative environments, the more valuable its internal dataset becomes  and the harder it becomes for competitors to replicate this advantage.</div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFAQ(this)">Which DAWs and game engines does EchoForge AI integrate with? <span class="faq-icon"><i class="fas fa-plus"></i></span></button>
+          <div class="faq-a">The initial integration targets the most widely used professional tools in the UK creative sector: Pro Tools, Ableton Live, and Logic Pro for audio production; Unity and Unreal Engine for game development. Integration is delivered through a plugin and API-based architecture that allows EchoForge to sit inside existing workflows rather than requiring users to leave their preferred tools. This approach ensures adoption is frictionless  the platform enhances what creators already use rather than demanding they switch to a new ecosystem. Additional integrations are planned through the Year 2 and 3 roadmap based on user demand and partnership development.</div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFAQ(this)">Who owns the audio generated using EchoForge AI? Can I use it commercially? <span class="faq-icon"><i class="fas fa-plus"></i></span></button>
+          <div class="faq-a">Commercial usage rights are clearly defined in EchoForge AI's platform terms. Subscribers own the audio they generate and can use it commercially across film, games, advertising, and music productions. The platform is being built with transparent licensing, provenance tracking, and rights-management infrastructure  specifically because many current AI audio tools still lack these production-ready safeguards. For enterprise and studio clients, custom licensing frameworks are available that align with their specific commercial requirements, clearance processes, and legal obligations. Legal review of all terms is conducted prior to commercial launch to ensure compliance with UK copyright and AI-related regulations.</div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFAQ(this)">I'm an independent filmmaker or game developer with a small team. Is EchoForge AI suitable for me? <span class="faq-icon"><i class="fas fa-plus"></i></span></button>
+          <div class="faq-a">Yes  independent creators and small studios are the primary early-adopter market for EchoForge AI. The platform is specifically designed to make professional-quality sound design accessible to teams that lack the budget for dedicated in-house sound designers or expensive outsourcing. The AI-assisted workflow reduces the technical barrier significantly  you describe what you need in natural language and shape the result in real time, without needing specialist sound engineering knowledge. Many features, including real-time refinement, smart tagging, and DAW export, are available from the Creator tier at £29/month, making the full professional workflow accessible at a fraction of traditional outsourcing costs.</div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFAQ(this)">When will EchoForge AI be available and how can I get early access? <span class="faq-icon"><i class="fas fa-plus"></i></span></button>
+          <div class="faq-a">The MVP is scheduled for launch at Month 6 of development, with the first paying customers onboarded from that point. During Months 1–5, the platform enters a private alpha phase with a small group of 10–15 early-adopter creators from UK film, game development, and music production communities. These participants receive heavily discounted or free access in exchange for structured feedback and case study participation. If you are a UK-based creative professional interested in joining the early access programme, you can submit an expression of interest through the Contact page  we prioritise users who are currently working on active productions and are willing to provide genuine workflow feedback.</div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFAQ(this)">How does EchoForge AI protect my creative data and production information? <span class="faq-icon"><i class="fas fa-plus"></i></span></button>
+          <div class="faq-a">Your production data  your prompts, generated assets, editing decisions, project library, and workflow patterns  is treated as proprietary business information. It is never shared with third parties, never used to train models for other users' benefit without explicit consent, and remains private to your account and team. The closed-loop learning system improves the platform's performance for your use specifically, not as a shared aggregate that benefits competitors. All data is processed under UK GDPR principles, stored with encryption, and governed by clear terms that define ownership and usage rights at the point of sign-up. For enterprise clients, custom data governance agreements are available on request.</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</div><!-- /page-faq -->
+
+
+<!-- ═══════════════════════════════════════════
+     PAGE : CONTACT
+═══════════════════════════════════════════════ -->
+<div class="page" id="page-contact">
+  <section style="background:linear-gradient(140deg,#F3EEFF 0%,#E9DFFE 60%,#DDD6FE 100%);padding:clamp(80px,12vw,120px) 0 clamp(60px,8vw,80px);">
+    <div class="container">
+      <div class="label-tag">Contact Us</div>
+      <h2 class="section-h2 dark">
+        Request Early Access.<br>
+        <span style="color:var(--blue-dark);">Start Your Sound Design Revolution.</span>
+      </h2>
+      <div class="section-divider divider-blue"></div>
+      <p class="para-dark" style="max-width:640px;">Speak to the EchoForge AI team about joining our early-adopter pilot programme, arranging a product walkthrough, or exploring enterprise and studio licensing. We serve UK filmmakers, game developers, music producers, and advertising agencies.</p>
+    </div>
+  </section>
+
+  <section class="process-section">
+    <div class="container">
+      <div class="contact-grid">
+
+        <!-- LEFT -->
+        <div>
+          <div class="contact-info">
+            <div class="contact-info-card">
+              <div class="contact-info-icon"><i class="fas fa-envelope"></i></div>
+              <div class="contact-info-text">
+                <strong>Email</strong>
+                <span>hello@theechoforge.ai</span>
+              </div>
+            </div>
+            <div class="contact-info-card">
+              <div class="contact-info-icon"><i class="fas fa-map-marker-alt"></i></div>
+              <div class="contact-info-text">
+                <strong>Headquarters</strong>
+                <span>London, United Kingdom</span>
+              </div>
+            </div>
+            <div class="contact-info-card">
+              <div class="contact-info-icon"><i class="fas fa-clock"></i></div>
+              <div class="contact-info-text">
+                <strong>Response Time</strong>
+                <span>We respond within 1 business day to all enquiries</span>
+              </div>
+            </div>
+            <div class="contact-info-card">
+              <div class="contact-info-icon"><i class="fas fa-shield-alt"></i></div>
+              <div class="contact-info-text">
+                <strong>Data & Compliance</strong>
+                <span>UK GDPR Compliant · Secure · Privacy by Design</span>
+              </div>
+            </div>
+            <div class="contact-info-card">
+              <div class="contact-info-icon"><i class="fas fa-music"></i></div>
+              <div class="contact-info-text">
+                <strong>Early Access Programme</strong>
+                <span>10–15 pilot users · Film, Games, Music, Advertising</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pilot Results -->
+          <div style="margin-top:32px;background:#fff;border:1px solid var(--card-border);border-radius:16px;padding:24px;box-shadow:0 2px 12px rgba(124,58,237,0.06);">
+            <div style="font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--blue-dim);margin-bottom:12px;">Survey Validation Signals</div>
+            <div class="score-row">
+              <div class="score-icon blue-bg">AI</div>
+              <span class="score-lbl">Interested in AI Sound Tools</span>
+              <span class="score-val">82%</span>
+            </div>
+            <div class="score-row">
+              <div class="score-icon green-bg">DAW</div>
+              <span class="score-lbl">Will Switch if DAW-Integrated</span>
+              <span class="score-val">58%</span>
+            </div>
+            <div class="score-row">
+              <div class="score-icon light-bg">PAY</div>
+              <span class="score-lbl">Willing to Pay Monthly</span>
+              <span class="score-val">65%</span>
+            </div>
+            <div class="score-row" style="border:none;">
+              <div class="score-icon blue-bg">NPS</div>
+              <span class="score-lbl">Early Adopter NPS Target</span>
+              <span class="score-val">40–70</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT FORM -->
+        <div class="contact-form-wrap">
+          <h3 style="font-family:var(--display);font-size:22px;font-weight:700;color:var(--text-dark);margin-bottom:6px;">Request Early Access</h3>
+          <p style="font-size:13px;color:var(--text-muted);margin-bottom:24px;font-family:var(--mono);">Join our pilot programme  no commitment required</p>
+
+          <form action="https://api.web3forms.com/submit" method="POST">
+            <input type="hidden" name="access_key" value="bfbccd4a-f7ce-4e48-8f6d-7e8312718ec9">
+            <input type="hidden" name="subject" value="EchoForge AI Early Access Request">
+            <input type="hidden" name="from_name" value="EchoForge AI Website">
+
+            <div class="form-row">
+              <label>Full Name</label>
+              <input type="text" name="name" placeholder="Your full name" required>
+            </div>
+
+            <div class="form-row">
+              <label>Work Email</label>
+              <input type="email" name="email" placeholder="you@yourstudio.co.uk" required>
+            </div>
+
+            <div class="form-row">
+              <label>Studio / Company Name</label>
+              <input type="text" name="business_name" placeholder="Your studio or company name">
+            </div>
+
+            <div class="form-row">
+              <label>I Am A…</label>
+              <select name="role">
+                <option>Independent Filmmaker / Video Producer</option>
+                <option>Indie Game Developer</option>
+                <option>Music Producer / Composer</option>
+                <option>Advertising Agency / Creative Team</option>
+                <option>Podcaster / Online Creator</option>
+                <option>VR/AR Studio</option>
+                <option>Sound Designer / Audio Engineer</option>
+                <option>Other Creative Professional</option>
+              </select>
+            </div>
+
+            <div class="form-row">
+              <label>Current Sound Workflow</label>
+              <select name="current_workflow">
+                <option>Pro Tools + Sound Libraries</option>
+                <option>Logic Pro + Libraries</option>
+                <option>Ableton Live + Samples</option>
+                <option>Unity/Unreal + FMOD/Wwise</option>
+                <option>Multiple disconnected tools</option>
+                <option>Outsource to freelance sound designers</option>
+                <option>Other</option>
+              </select>
+            </div>
+
+            <div class="form-row">
+              <label>Your Biggest Sound Design Challenge</label>
+              <textarea name="message" placeholder="Tell us your biggest pain point  slow workflows, expensive outsourcing, lack of originality, fragmented tools…" required></textarea>
+            </div>
+
+            <button class="form-submit-btn" type="submit">Submit Early Access Request →</button>
+            <p style="text-align:center;font-size:11px;color:var(--text-light);margin-top:14px;font-family:var(--mono);">UK GDPR Compliant · Your data is never sold or shared</p>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</div><!-- /page-contact -->
+
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer>
+  <div class="footer-inner">
+
+    <!-- BRAND -->
+    <div class="footer-brand">
+      <div class="footer-logo" onclick="showPage('home')">
+    TheEchoForge AI
+</div>
+      <p class="footer-desc">AI-Powered Sound Design Platform for the UK Creative Industries. Built for filmmakers, game developers, musicians, and agencies who need professional-quality audio faster, smarter, and more affordably.</p>
+      <div class="footer-badges">
+        <span class="footer-badge">UK GDPR Compliant</span>
+        <span class="footer-badge">London, UK</span>
+        <span class="footer-badge">AI-Powered</span>
+        <span class="footer-badge">DAW Integrated</span>
+      </div>
+    </div>
+
+    <!-- PLATFORM -->
+    <div>
+      <div class="footer-col-title">Platform</div>
+      <div class="footer-col">
+        <a onclick="showPage('platform')">AI Sound Generation</a>
+        <a onclick="showPage('platform')">Real-Time Editing</a>
+        <a onclick="showPage('platform')">DAW Integration</a>
+        <a onclick="showPage('platform')">Collaborative Workspace</a>
+        <a onclick="showPage('platform')">Closed-Loop AI Learning</a>
+        <a onclick="showPage('platform')">Smart Asset Management</a>
+      </div>
+    </div>
+
+    <!-- COMPANY -->
+    <div>
+      <div class="footer-col-title">Company</div>
+      <div class="footer-col">
+        <a onclick="showPage('about')">About EchoForge AI</a>
+        <a onclick="showPage('about')">Darpit Mehta · Founder & CEO</a>
+        <a onclick="showPage('process')">How It Works</a>
+        <a onclick="showPage('faq')">FAQ</a>
+        <a onclick="showPage('market')">Market Analysis</a>
+        <a onclick="showPage('pricing')">Pricing & Plans</a>
+        <a onclick="showPage('contact')">Early Access</a>
+      </div>
+    </div>
+
+    <!-- SOLUTIONS -->
+    <div>
+      <div class="footer-col-title">Solutions</div>
+      <div class="footer-col">
+        <a onclick="showPage('platform')">Independent Filmmakers</a>
+        <a onclick="showPage('platform')">Indie Game Studios</a>
+        <a onclick="showPage('platform')">Music Producers</a>
+        <a onclick="showPage('platform')">Advertising Agencies</a>
+        <a onclick="showPage('pricing')">Starter · £12/mo</a>
+        <a onclick="showPage('pricing')">Creator · £29/mo</a>
+        <a onclick="showPage('pricing')">Studio · £79/seat/mo</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- BOTTOM -->
+  <div class="footer-bottom-bar">
+    <p>© 2026 <span>TheEchoForge AI</span> · London, United Kingdom · Founder: Darpit Mehta · UK GDPR Compliant</p>
+    <div class="footer-bottom-links">
+      <a onclick="showPage('contact')">Privacy Policy</a>
+      <a onclick="showPage('contact')">Terms of Service</a>
+      <a onclick="showPage('contact')">Business Plan</a>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ═══════════ JAVASCRIPT ═══════════ -->
+<script>
+/* ─── PAGE NAV ───────────────────────────────── */
+function showPage(name){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-links button').forEach(b=>b.classList.remove('active'));
+  const pg=document.getElementById('page-'+name);
+  if(pg){pg.classList.add('active');}
+  const btn=document.getElementById('nav-'+name);
+  if(btn){btn.classList.add('active');}
+  window.scrollTo({top:0,behavior:'instant'});
+  if(name==='market'&&!window.marketChartsLoaded){initMarketCharts();window.marketChartsLoaded=true;}
+}
+
+function toggleCard(btn){
+  const card=btn.closest('.platform-card');
+  card.classList.toggle('open');
+  btn.innerHTML=card.classList.contains('open')?'Show Less ▲':'Learn More ▼';
+}
+
+function toggleFAQ(btn){
+  const item=btn.parentElement;
+  const icon=btn.querySelector('.faq-icon i');
+  item.classList.toggle('open');
+  icon.className=item.classList.contains('open')?'fas fa-minus':'fas fa-plus';
+}
+
+function closeMobile(){
+  document.getElementById('mobileNav').classList.remove('open');
+  document.getElementById('hamburger').classList.remove('open');
+}
+
+document.getElementById('hamburger').addEventListener('click',function(){
+  this.classList.toggle('open');
+  document.getElementById('mobileNav').classList.toggle('open');
+});
+
+/* ─── CHART THEME  EchoForge Violet ─────────── */
+const BLU='rgba(124,58,237,1)';
+const BLU2='rgba(124,58,237,0.7)';
+const BLU3='rgba(124,58,237,0.35)';
+const LBLU='rgba(167,139,250,0.9)';
+const LBLU2='rgba(196,181,253,0.8)';
+const GRID='rgba(124,58,237,0.08)';
+const MUTED='rgba(59,18,128,0.8)';
+
+Chart.defaults.font.family="'IBM Plex Mono', monospace";
+Chart.defaults.font.size=11;
+Chart.defaults.color=MUTED;
+
+/* ─── MARKET CHARTS ──────────────────────────── */
+function initMarketCharts(){
+
+  // UK Creative Revenue by Sector
+  new Chart(document.getElementById('chartGrowth').getContext('2d'),{
+    type:'bar',
+    data:{
+      labels:['Film & TV','Music Industry','Video Games','Advertising','Podcasting / Digital'],
+      datasets:[
+        {label:'UK Market Size (£B, 2025)',data:[6.8,7.6,8.7,24.3,1.2],backgroundColor:[BLU,BLU2,LBLU,BLU3,LBLU2],borderRadius:5,barPercentage:0.6},
+        {type:'line',label:'EchoForge Addressable %',data:[2.1,1.8,3.4,1.2,4.5],borderColor:LBLU,borderWidth:2,yAxisID:'y2',tension:0.4,pointBackgroundColor:LBLU,fill:false}
+      ]
+    },
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{color:MUTED,boxWidth:10,padding:12,font:{size:10}}}},scales:{x:{grid:{display:false},ticks:{color:MUTED}},y:{grid:{color:GRID},ticks:{color:MUTED,callback:v=>'£'+v+'B'}},y2:{position:'right',grid:{display:false},ticks:{color:MUTED,callback:v=>v+'%'}}}}
+  });
+
+  // Survey Pain Points Doughnut
+  new Chart(document.getElementById('chartPain').getContext('2d'),{
+    type:'doughnut',
+    data:{
+      labels:['Time-consuming workflow (78%)','Stock libraries not unique (70%)','Fragmented tools (74%)','Want DAW-integrated AI (69%)','Willing to Pay (65%)'],
+      datasets:[{
+        data:[78,70,74,69,65],
+        backgroundColor:[BLU,BLU2,BLU3,LBLU,LBLU2],
+        borderWidth:1.5
+      }]
+    },
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{color:MUTED,boxWidth:10,padding:10,font:{size:10}}}}}
+  });
+
+  // Revenue Forecast
+  new Chart(document.getElementById('chartReadiness').getContext('2d'),{
+    type:'bar',
+    data:{
+      labels:['Year 1','Year 2','Year 3'],
+      datasets:[
+        {label:'Revenue (£000s)',data:[21,216,673],backgroundColor:[BLU3,BLU2,BLU],borderRadius:6,barPercentage:0.55},
+        {label:'Net Profit (£000s)',data:[-10,6,100],type:'line',borderColor:LBLU,borderWidth:2,tension:0.4,pointBackgroundColor:LBLU,fill:false}
+      ]
+    },
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{color:MUTED,boxWidth:10,padding:12,font:{size:10}}}},scales:{x:{grid:{display:false},ticks:{color:MUTED}},y:{grid:{color:GRID},ticks:{color:MUTED,callback:v=>'£'+v+'k'}}}}
+  });
+
+  // Competitive Radar
+  new Chart(document.getElementById('chartRadar').getContext('2d'),{
+    type:'radar',
+    data:{
+      labels:['AI Generation','Real-Time Editing','DAW Integration','Collaboration Tools','Closed-Loop Learning','Asset Management'],
+      datasets:[
+        {label:'EchoForge AI',data:[5,5,5,5,5,5],backgroundColor:'rgba(124,58,237,0.1)',borderColor:BLU,borderWidth:2,pointBackgroundColor:BLU},
+        {label:'Pro Tools / DAWs',data:[1,5,5,2,1,2],backgroundColor:'rgba(167,139,250,0.05)',borderColor:LBLU,borderWidth:1.5,pointBackgroundColor:LBLU},
+        {label:'AI Audio Generators',data:[4,1,1,1,2,1],backgroundColor:'rgba(124,58,237,0.04)',borderColor:'rgba(124,58,237,0.5)',borderWidth:1.5,pointBackgroundColor:'rgba(124,58,237,0.5)'},
+        {label:'Sound Libraries',data:[1,1,1,1,1,4],backgroundColor:'rgba(74,124,89,0.04)',borderColor:'rgba(74,124,89,0.5)',borderWidth:1.5,pointBackgroundColor:'rgba(74,124,89,0.5)'},
+      ]
+    },
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{color:MUTED,boxWidth:10,padding:14,font:{size:10}}}},scales:{r:{backgroundColor:'rgba(124,58,237,0.01)',grid:{color:GRID},pointLabels:{color:MUTED,font:{size:10}},ticks:{display:false},min:0,max:5}}}
+  });
+}
+</script>
+</body>
+</html>
